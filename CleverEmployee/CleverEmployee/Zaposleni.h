@@ -11,7 +11,7 @@ public:
 	void prodajArtikal(Niz);
 	void statistikaDan();
 	void statistikaDanSvi();
-	void statistikaSedmica(;
+	void statistikaSedmica();
 	void statistikaSedmicaSvi();
 	void statistikaMjesec();
 	void statistikaMjesecSvi();
