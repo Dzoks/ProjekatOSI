@@ -146,10 +146,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
+    <ClCompile Include="Administrator.cpp" />
+    <ClCompile Include="Artikal.cpp" />
+    <ClCompile Include="Korisnik.cpp" />
+    <ClCompile Include="Niz.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Zaposleni.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="Administrator.h" />
+    <ClInclude Include="Artikal.h" />
+    <ClInclude Include="Korisnik.h" />
+    <ClInclude Include="Niz.h" />
+    <ClInclude Include="Zaposleni.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
