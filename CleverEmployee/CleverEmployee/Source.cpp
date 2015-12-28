@@ -1,7 +1,13 @@
 #include <iostream>
+
+#include "Artikal.h"
+#include "Administrator.h"
+#include "Korisnik.h"
+
 using namespace std;
 int main()
 {
-	//evoga
+	Administrator a;
+	a.kreirajNalog();
 	return 0;
 }

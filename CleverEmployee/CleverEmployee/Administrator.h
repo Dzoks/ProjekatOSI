@@ -1,14 +1,19 @@
 #pragma once
 #include "Korisnik.h"
+
+#include <algorithm>
+#include <iostream>
+#include <fstream>
+using namespace std;
 class Administrator :
 	public Korisnik
 {
 public:
-	Administrator();
+	Administrator(std::string = "", std::string = "");
 	~Administrator();
-	void kreirajNalog(Korisnik*);
-	void izmjenaNaloga(Korisnik*);
-	void brisiNalog(Korisnik*);
+	void kreirajNalog();
+	void izmjenaNaloga(Korisnik**,int);
+	void brisiNalog(Korisnik**,int);
 	void podesavanjeJezika();
 	void podesavanjeBoje();
 	void pregledStatistike();/*treba dodati niz artikala*/
