@@ -53,52 +53,6 @@ void Administrator::kreirajNalog()
 	dat1.close();
 }
 
-/*void Administrator::izmjenaNaloga()
-{
-	std::ifstream dat("Korisnici.txt");
-	std::string pom_ime;
-	bool flag = false;
-	int pos;
-	do
-	{
-		flag = true;
-		dat.seekg(0, std::ios::beg);
-		std::cout << "Unesite ime: ";
-		std::cin >> pom_ime;
-		std::string pom1, pom2, pom3;
-		while (!dat.eof() && flag)
-		{
-			dat >> pom1;
-			dat >> pom2;
-			dat >> pom3;
-			if (pom1 == pom_ime)
-			{
-				pos = dat.tellg();
-				dat.close();
-				std::ofstream dat1("Korisnici.txt", ios::app);
-				char c;
-				do
-				{
-					std::cout << "Izmjena KORISNI?KOG IMENA[1]   LOZINKE[2]: ";
-					std::cin >> c;
-					if (c == '1')
-					{
-						dat1.seekp(pos, ios::beg);
-						std::string novo_ime;
-						std::cout << "Novo korisnicko ime: ";
-						std::cin >> novo_ime;
-						dat1.seekp(-(pom1.length() + pom2.length() + pom3.length() + 3), std::ios::cur);
-						//dat1.getline(" ", (pom1.length() + pom2.length() + pom3.length() + 3));
-						dat1.seekp(-(pom1.length() + pom2.length() + pom3.length() + 3), std::ios::cur);
-						dat1 << novo_ime << " " << pom2 << " " << pom3 << std::endl;
-						flag = false;
-					}
-				} while (c != '1' && c != '2');
-				dat1.close();
-			}
-		} 
-	} while (flag);
-}*/
 
 void Administrator::izmjenaNaloga()
 {
