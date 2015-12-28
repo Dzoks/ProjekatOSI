@@ -9,7 +9,7 @@ int main()
 {
 	Administrator a;
 	//a.kreirajNalog();
-	
+	cout << "bla";
 	a.izmjenaNaloga();
 	return 0;
 }
