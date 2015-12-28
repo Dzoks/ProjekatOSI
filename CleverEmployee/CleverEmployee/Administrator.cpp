@@ -53,59 +53,115 @@ void Administrator::kreirajNalog()
 	dat1.close();
 }
 
-void Administrator::izmjenaNaloga(Korisnik **niz,int brojac)
+/*void Administrator::izmjenaNaloga()
 {
-	Korisnik **pok = 0;
-	std::string pom;
+	std::ifstream dat("Korisnici.txt");
+	std::string pom_ime;
+	bool flag = false;
+	int pos;
 	do
 	{
-		std::cout << "Unesite korisnicko ime: ";
-		std::cin >> pom;
-		pok=std::find_if(niz, niz + brojac, [&pom](Korisnik *k) { return pom == k->getIme(); });
-	} while (pok==niz+brojac && (*pok)->getIme()==this->getIme());
-	
+		flag = true;
+		dat.seekg(0, std::ios::beg);
+		std::cout << "Unesite ime: ";
+		std::cin >> pom_ime;
+		std::string pom1, pom2, pom3;
+		while (!dat.eof() && flag)
+		{
+			dat >> pom1;
+			dat >> pom2;
+			dat >> pom3;
+			if (pom1 == pom_ime)
+			{
+				pos = dat.tellg();
+				dat.close();
+				std::ofstream dat1("Korisnici.txt", ios::app);
+				char c;
+				do
+				{
+					std::cout << "Izmjena KORISNI?KOG IMENA[1]   LOZINKE[2]: ";
+					std::cin >> c;
+					if (c == '1')
+					{
+						dat1.seekp(pos, ios::beg);
+						std::string novo_ime;
+						std::cout << "Novo korisnicko ime: ";
+						std::cin >> novo_ime;
+						dat1.seekp(-(pom1.length() + pom2.length() + pom3.length() + 3), std::ios::cur);
+						//dat1.getline(" ", (pom1.length() + pom2.length() + pom3.length() + 3));
+						dat1.seekp(-(pom1.length() + pom2.length() + pom3.length() + 3), std::ios::cur);
+						dat1 << novo_ime << " " << pom2 << " " << pom3 << std::endl;
+						flag = false;
+					}
+				} while (c != '1' && c != '2');
+				dat1.close();
+			}
+		} 
+	} while (flag);
+}*/
+
+void Administrator::izmjenaNaloga()
+{
+	std::ifstream dat("Korisnici.txt");
+	std::string novi,pom1,pom2,pom3,novi1,pom11,pom22,pom33;
+	bool flag = false;
+	int lokacija = 0;
+	do
+	{
+		dat.clear();
+		dat.seekg(0);
+		flag = true;
+		std::cout << "Korisnicko ime: ";
+		std::cin >> novi;
+		while (!dat.eof() && flag)
+		{
+			dat >> pom1 ;
+			dat >> pom2;
+			dat >> pom3;
+			if (pom1 == novi)
+			{
+				flag = false;
+				lokacija = dat.tellg();
+			}
+		}
+	} while (flag);
+	dat.close();
+
+	std::fstream dat1("Korisnici.txt",ios::in|ios::out);
 	char c;
 	do
 	{
-		std::cout << "Promjena SIFRE[S]  KORISNISKOG IMENA[K]  KRAJ[0]: ";
+		
+		std::cout << "Promjena KORISKICKOG IMENA[1]   LOZINKE[2]: ";
 		std::cin >> c;
-		if (c == 'S')
+		if (c == '1')
 		{
+			std::ifstream dat2("Korisnici.txt");
+			bool flag = false;
 			do
 			{
-				std::cout << "Unesite novu sifru: ";
-				std::cin >> pom;
-			} while (pom.length() < 6);
-			(*pok)->setLozinka(pom);
-			std::cout << "Uspjesna promjena lozinke";
+				flag = true;
+				std::cout << "Novo korisnicko ime: ";
+				std::cin >> novi1;
+				while (!dat2.eof() && flag)
+				{
+					dat2 >> pom11 >> pom22>> pom33;
+					if (pom1 == novi1)
+					{
+						lokacija = dat2.tellg();
+						flag = false;
+					}
+				}
+			} while (!flag);
+			dat2.close();
+			dat1.clear();
+			long duzina = pom1.length() + pom2.length() + pom3.length() + 2;
+			dat1.seekp(lokacija-duzina,ios::beg);
+			cout << lokacija <<"    "<< duzina<<endl;
+			dat1 << novi1 << " " << pom2 << " " << pom3 << endl;
 		}
-		else if (c == 'K')
-		{
-			do
-			{
-				std::cout << "Unesite novo korisnicko ime: ";
-				std::cin >> pom;
-			} while (std::any_of(niz, niz + brojac, [&pom](Korisnik *k) { return pom == k->getIme(); }));
-			(*pok)->setLozinka(pom);
-		}
-	}while(c!='0');	
+	} while (c!='1' && c!='2');
+	dat1.close();
+
 }
 
-void Administrator::brisiNalog(Korisnik **niz,int brojac)
-{
-	std::string pom;
-	Korisnik **pok = 0;
-	do
-	{
-		std::cout << "Unesite korisnicko ime: ";
-		std::cin >> pom;
-		pok = std::find_if(niz, niz + brojac, [&pom](Korisnik *k) { return pom == k->getIme(); });
-	} while (pok == niz + brojac && (*pok)->getIme() == this->getIme());
-
-	Korisnik **novi_niz = new Korisnik*[brojac - 1];
-	std::copy(niz, pok, novi_niz);
-	std::copy(pok + 1, niz + brojac, novi_niz);
-	delete[] niz;
-	niz = novi_niz;
-	delete pok;
-}

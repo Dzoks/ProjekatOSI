@@ -12,7 +12,7 @@ public:
 	Administrator(std::string = "", std::string = "");
 	~Administrator();
 	void kreirajNalog();
-	void izmjenaNaloga(Korisnik**,int);
+	void izmjenaNaloga();
 	void brisiNalog(Korisnik**,int);
 	void podesavanjeJezika();
 	void podesavanjeBoje();

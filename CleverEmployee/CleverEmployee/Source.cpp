@@ -8,6 +8,8 @@ using namespace std;
 int main()
 {
 	Administrator a;
-	a.kreirajNalog();
+	//a.kreirajNalog();
+	
+	a.izmjenaNaloga();
 	return 0;
 }
