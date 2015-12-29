@@ -119,6 +119,27 @@ void Administrator::izmjenaNaloga()
 
 }
 
+void Administrator::podesavanjeBoje()
+{
+	std::fstream dat("Kontrola.txt",std::ios::out);
+	char c;
+	do {
+
+		std::cout << "ZA PROMJENU BOJE ODABERITE JEDNU OD SLEDECE TRI OPCIJE:" << std::endl;
+		std::cout << "CRNA[1], PLAVA [2], BIJELA [3]: " << std::endl;
+		std::cin >> c;
+		if (c == '1')
+			dat << "color 07" << std::endl;
+		if (c == '2')
+			dat << "color 17" << std::endl;
+		if (c == '3')
+			dat << "color F0" << std::endl;
+		else if(c != '1'&& c != '2'&& c != '3') std::cout << "POGRESNA OPCIJA!" << std::endl;
+	} while (c != '1'&& c != '2'&& c!='3');
+	std::cout << "PROMJENE CE BITI IZVRSENE NAKON PONOVNOG POKRETANJA." << std::endl;
+		dat.close();
+}
+
 void Administrator::ukupanBrojNaloga()
 {
 	std::fstream dat("Korisnici.txt", std::ios::in);

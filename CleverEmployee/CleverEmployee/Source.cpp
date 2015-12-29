@@ -7,10 +7,19 @@
 using namespace std;
 int main()
 {
+	fstream boja("Kontrola.txt", ios::in);
+	if (boja)
+	{
+		string pozadina;
+		getline(boja, pozadina);
+		const char* cpozadina = pozadina.c_str();
+		boja.close();
+		system(cpozadina);
+	}
 	Administrator a;
 	//a.kreirajNalog();
-	
 	//a.izmjenaNaloga();
-	a.ukupanBrojNaloga();
+	//a.ukupanBrojNaloga();
+	a.podesavanjeBoje();
 	return 0;
 }
