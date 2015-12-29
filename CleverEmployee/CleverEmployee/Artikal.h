@@ -8,6 +8,7 @@ class Artikal
 	friend std::istream& operator>>(std::istream&, Artikal&);
 public:
 	Artikal();
+	Artikal(int, std::string, std::string, double, double);//da možemo formirati gotov artikla,samo mu proslijedimo parametre
 	~Artikal();
 	void setSifra(int);
 	void setKolicina(double);

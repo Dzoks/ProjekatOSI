@@ -3,13 +3,14 @@
 
 
 Artikal::Artikal()
-{
-}
+{}
+
+Artikal::Artikal(int sif, std::string ime, std::string dodatak, double cena, double kol):sifra(sif),naziv(ime),opis(dodatak),cijena(cena),kolicina(kol)
+{}
 
 
 Artikal::~Artikal()
-{
-}
+{}
 
 void Artikal::setSifra(int x)
 {
@@ -67,8 +68,9 @@ std::ostream& operator<<(std::ostream &out, const Artikal& a)
 	out << std::setw(15) << std::left << a.naziv << " ";
 	out << std::setw(15) << std::left << a.opis << " ";
 	out << std::setprecision(3);//ispisuje na 3 decimale
-	out << std::setw(5) << std::left << a.kolicina << "  ";
-	out << std::setw(5)<<std::left<<a.cijena << " ";
+	out << std::setw(10) << std::left << a.kolicina << "  ";
+	out << std::setw(8)<<std::left<<a.cijena << " ";
+	out << std::endl;
 	return out;
 }
 
@@ -83,10 +85,12 @@ std::istream & operator>>(std::istream &in, Artikal &a)
 	{
 		std::cout << "\tNaziv: "; in >> a.naziv;
 	} while (a.naziv.length() < 3);
-
-	std::cout << "\tOpis DA[D]  NE[N]: ";
 	char c;
-	std::cin >> c;
+	do
+	{
+		std::cout << "\tOpis DA[D]  NE[N]: ";
+		std::cin >> c;
+	} while (c != 'D' && c != 'N');
 	a.opis = "";//nema opisa,uneseno N
 	if (c == 'D')
 	{
