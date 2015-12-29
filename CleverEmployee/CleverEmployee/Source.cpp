@@ -7,9 +7,12 @@
 using namespace std;
 int main()
 {
-	Administrator a;
+	//Administrator a;
 	//a.kreirajNalog();
 	
-	a.izmjenaNaloga();
+	//a.izmjenaNaloga();
+	Artikal art;
+	cin >> art;
+	cout << art;
 	return 0;
 }
