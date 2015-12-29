@@ -119,3 +119,36 @@ void Administrator::izmjenaNaloga()
 
 }
 
+void Administrator::podesavanjeBoje()
+{
+	std::cout << "=====~~~~~~~~~~~~~~=====" << std::endl << "     BOJA POZADINE: " << std::endl << "=====~~~~~~~~~~~~~~=====" << std::endl;
+	std::cout << "0 = CRNA" << std::endl
+		<< "1 = PLAVA" << std::endl
+		<< "2 = ZELENA" << std::endl
+		<< "3 = CRVENA" << std::endl
+		<< "4 = LJUBICASTA" << std::endl
+		<< "5 = ZUTA" << std::endl
+		<< "6 = BIJELA" << std::endl
+		<< "7 = SIVA" << std::endl;
+	int boja;
+	std::cin >> boja;
+	while (boja < 0 || boja >7)
+	{
+		std::cout << "Pogresan unos!" << std::endl;
+		std::cout << "Unesite boju ponovo: ";
+		std::cin >> boja;
+	}
+	switch (boja)
+	{
+	case 0: {system("color 0F"); break; };//crna pozadina,bijela slova
+	case 1: {system("color 10"); break; }//plava pozadina,crna slova
+	case 2: { system("color 20"); break; };//zelena pozadina,crna slova
+	case 3: { system("color 40"); break; };//crvena pozadina,crna slova
+	case 4: { system("color 5F"); break; };//ljubicasta pozadina,bijela slova
+	case 5: { system("color E0"); break; };//zuta pozadina,crna slova
+	case 6: { system("color 70"); break; };//bijela pozadine,crna slova
+	case 7: { system("color 8C"); break; };//siva pozadina,crvena slova
+	}
+	std::cout << "Boja uspjesno promjenjena" << std::endl;
+}
+
