@@ -10,6 +10,7 @@ int main()
 	Administrator a;
 	//a.kreirajNalog();
 	
-	a.izmjenaNaloga();
+	//a.izmjenaNaloga();
+	a.ukupanBrojNaloga();
 	return 0;
 }

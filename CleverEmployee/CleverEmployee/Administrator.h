@@ -1,10 +1,9 @@
 #pragma once
 #include "Korisnik.h"
-
+#include<iomanip>
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-using namespace std;
 class Administrator :
 	public Korisnik
 {
@@ -14,7 +13,7 @@ public:
 	void kreirajNalog();
 	void izmjenaNaloga();
 	void brisiNalog(Korisnik**,int);
-	void podesavanjeJezika();
+	void podesavanjeJezika();//najmanji prioritet
 	void podesavanjeBoje();
 	void pregledStatistike();/*treba dodati niz artikala*/
 	void brojIzmjena();

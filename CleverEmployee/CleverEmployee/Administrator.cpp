@@ -39,7 +39,7 @@ void Administrator::kreirajNalog()
 		std::cin >> pom_loz;
 	}while(pom_loz.length() < 6);
 	dat.close();
-	std::ofstream dat1("Korisnici.txt",ios::app);
+	std::ofstream dat1("Korisnici.txt",std::ios::app);
 	dat1 << pom_ime << " " << pom_loz << " ";
 	char c;
 	do
@@ -81,7 +81,7 @@ void Administrator::izmjenaNaloga()
 	} while (flag);
 	dat.close();
 
-	std::fstream dat1("Korisnici.txt",ios::in|ios::out);
+	std::fstream dat1("Korisnici.txt",std::ios::in|std::ios::out);
 	char c;
 	do
 	{
@@ -110,12 +110,50 @@ void Administrator::izmjenaNaloga()
 			dat2.close();
 			dat1.clear();
 			long duzina = pom1.length() + pom2.length() + pom3.length() + 2;
-			dat1.seekp(lokacija-duzina,ios::beg);
-			cout << lokacija <<"    "<< duzina<<endl;
-			dat1 << novi1 << " " << pom2 << " " << pom3 << endl;
+			dat1.seekp(lokacija-duzina,std::ios::beg);
+			//cout << lokacija <<"    "<< duzina<<endl;
+			dat1 << novi1 << " " << pom2 << " " << pom3 << std::endl;
 		}
 	} while (c!='1' && c!='2');
 	dat1.close();
 
 }
 
+void Administrator::ukupanBrojNaloga()
+{
+	std::fstream dat("Korisnici.txt", std::ios::in);
+	int br = 0;
+	std::string a, b, c;
+	while (!dat.eof())
+	{
+		dat >> a >> b >> c;
+			br++;
+	}
+	dat.close();
+	char cha;
+	do
+	{
+		std::cout << "ISPIS NA KONZOLU[1], TEKSTUALNI FAJL[2]: ";
+		std::cin >> cha;
+		if (cha == '1')
+		{
+			std::cout << "=============================================" << std::endl;
+			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << "||" << std::endl;
+			std::cout << "=============================================" << std::endl;
+		}
+		else if (cha == '2')
+		{
+			std::fstream out("BrojNaloga.txt", std::ios::out);
+			out << "=============================================" << std::endl;
+			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << "||" << std::endl;
+			out << "=============================================" << std::endl;
+			std::cout << "=====================================================================" << std::endl;
+			std::cout << "||INFORMACIJA KOJA STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt||" << std::endl;
+			std::cout << "=====================================================================" << std::endl;
+			out.close();
+		}
+
+	} while (cha != '1'&&cha != '2');
+
+
+}
