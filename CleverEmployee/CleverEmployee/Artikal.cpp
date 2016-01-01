@@ -64,7 +64,7 @@ double Artikal::getCijena()
 
 std::ostream& operator<<(std::ostream &out, const Artikal& a)
 {
-	out << std::setw(7) << a.sifra<<" ";//ispisuje sifru sa 7 mjesta,a prazna popunjava 0
+	out << std::setw(7) << a.sifra<<" ";//ispisuje sifru sa 7 mjesta
 	out << std::setw(15) << std::left << a.naziv << " ";
 	out << std::setw(15) << std::left << a.opis << " ";
 	out << std::setprecision(3);//ispisuje na 3 decimale
@@ -80,7 +80,7 @@ std::istream & operator>>(std::istream &in, Artikal &a)
 	do
 	{
 		std::cout << "\tSifra: "; in >> a.sifra;
-	} while (a.sifra < 1 || a.sifra>999999);//sifra mora biti izmedju 1 i 7
+	} while (a.sifra < 1 || a.sifra>999999);//sifra mora imati izmedju 1 i 7 cifara
 	do
 	{
 		std::cout << "\tNaziv: "; in >> a.naziv;

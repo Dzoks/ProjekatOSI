@@ -4,6 +4,7 @@
 #include <iomanip>
 class Artikal
 {
+	friend class Niz;
 	friend std::ostream& operator<<(std::ostream&, const Artikal&);
 	friend std::istream& operator>>(std::istream&, Artikal&);
 public:

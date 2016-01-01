@@ -2,21 +2,25 @@
 #include "Artikal.h"
 #include <iostream>
 #include <algorithm>
+#include <vector>
+#include <fstream>
+using namespace std;
 class Niz
 {
 	friend std::ostream& operator<<(std::ostream&, const Niz&);
 public:
 	Niz();
 	~Niz();
+	void ucitajDatoteku();
+	void pisiDatoteku();
 	bool dodajArtikal();//dodaje novi artikal u niz
 	bool brisiArtikal();//brise artikal iz niza
-	void traziPoSifri(int);//pronadje traženi Artikal i ispiše ga
-	void traziPoNazivu(std::string);
+	void traziPoSifri();//pronadje traženi Artikal i ispiše ga
+	void traziPoNazivu();
 	void print();
 private:
-	Artikal *niz;
-	int kapacitet, trenutniBroj;
+	std::vector<Artikal> niz;
 
-	void prosiri_kapacitet();
+	void ispisi_heder();//ispisuje formatirano CIJENA KOLICINA
 };
 
