@@ -18,6 +18,15 @@ void Niz::ucitajDatoteku()
 		dat >> a.sifra >> a.naziv >> a.opis >> a.cijena >> a.kolicina;
 		niz.push_back(a);
 	}
+	dat.close();
+}
+
+void Niz::pisiDatoteku()
+{
+	ofstream dat("Artikli.txt");
+	for (int i = 0; i < niz.size(); i++)
+		dat << niz[i].sifra << " " << niz[i].naziv << " " << niz[i].opis << " " << niz[i].cijena << " " << niz[i].kolicina << std::endl;
+	dat.close();
 }
 
 bool Niz::dodajArtikal()
@@ -38,15 +47,16 @@ bool Niz::brisiArtikal()
 	{
 	std::cout << "Sifra: "; std::cin >> sifra;
 	} while (sifra < 1 || sifra >999999);
-	Artikal a;
 	int i;
+	Artikal a;
 	for (i = 0; i < niz.size(); i++)
 		if (niz[i].getSifra() == sifra)
 		{
 			a = niz[i];
+			niz.erase(niz.begin() + i, niz.begin() + i + 1);
 			break;
 		}
-	if (++i < niz.size())
+	if (a.sifra==sifra)
 		std::cout << "ARTIKAL USPJESNO OBRISAN!" << std::endl;
 	else 
 		std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;

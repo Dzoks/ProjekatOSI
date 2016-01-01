@@ -10,5 +10,10 @@ int main()
 	Niz b;
 	b.ucitajDatoteku();
 	b.print();
+	b.dodajArtikal();
+	b.brisiArtikal();
+	b.brisiArtikal();
+	b.print();
+	b.pisiDatoteku();
 	return 0;
 }

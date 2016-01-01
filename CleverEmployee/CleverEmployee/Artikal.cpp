@@ -91,7 +91,7 @@ std::istream & operator>>(std::istream &in, Artikal &a)
 		std::cout << "\tOpis DA[D]  NE[N]: ";
 		std::cin >> c;
 	} while (c != 'D' && c != 'N');
-	a.opis = "";//nema opisa,uneseno N
+	a.opis = "nema_opis";//nema opisa,uneseno N
 	if (c == 'D')
 	{
 		std::cout << "\t\tUnesite opis:";
