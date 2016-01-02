@@ -2,7 +2,7 @@
 
 
 
-Administrator::Administrator(std::string ime, std::string loz):Korisnik(ime,loz)
+Administrator::Administrator(std::string ime, std::string loz,std::string status):Korisnik(ime,loz,status)
 {}
 
 Administrator::~Administrator()
@@ -11,80 +11,7 @@ Administrator::~Administrator()
 
 void Administrator::kreirajNalog()
 {
-	/*std::ifstream dat("Korisnici.txt");
-
-
-	std::string pom_ime;
-	bool flag = false;
-	do
-	{
-		flag = false;
-		dat.seekg(0, std::ios::beg);
-		std::cout << "Unesite ime: ";
-		std::cin >> pom_ime;
-		std::string pom1,pom2,pom3;
-		while (!dat.eof() && !flag)
-		{
-			dat >> pom1;
-			dat >> pom2;
-			dat >> pom3;
-			if (pom1 == pom_ime)
-				flag = true;
-		}
-	} while (flag);
-	std::string pom_loz;
-	do
-	{
-		std::cout << "Unesite lozinku: ";
-		std::cin >> pom_loz;
-	}while(pom_loz.length() < 6);
-	dat.close();
-	std::ofstream dat1("Korisnici.txt",std::ios::app);
-	dat1 << pom_ime << " " << pom_loz << " ";
-	char c;
-	do
-	{
-		std::cout << "Status korisnika ADMINISTRATOR[1]  ZAPOSLENI[2]:";
-		std::cin >> c;
-		if (c == '1')
-			dat1 << "A" << std::endl;
-		else dat1 << "Z" << std::endl;
-	} while (c != '1' && c != '2');
-	dat1.close();*/
-	/*std::fstream dat("Korisnici.txt", std::fstream::in);
-	std::string ime,lozinka,status,pomime;
-	bool flag;
-	do
-	{
-		flag = true;
-		dat.seekg(0, std::fstream::beg);
-		std::cout << "Unesite korisnicko ime: ";
-		std::cin >> ime;
-		if (dat)
-		{
-			while (!dat.eof() && flag)
-			{
-				dat >> pomime >> lozinka >> status;
-				if (pomime == ime) flag = false;
-			}
-		}
-
-	} while (!flag);
-	dat.close();
-	do
-	{
-		std::cout << "Unesite zeljenu lozinku: ";
-		std::cin >> lozinka;
-	} while (lozinka.length() < 6);
-	do
-	{
-		std::cout << "Administrator [A}, Zaposleni [Z] ? ";
-		std::cin >> status;
-	} while (status!="A"&&status!="Z");
-	dat.open("Korisnici.txt", std::fstream::app);
-
-	dat<< ime <<" "<<lozinka << " "<<status<<std::endl;
-	dat.close();*/
+	system("cls");
 	int kap = 5;
 	int brojElemenata = 0;
 	Korisnik* niz = new Korisnik[kap];
@@ -112,17 +39,17 @@ void Administrator::kreirajNalog()
 		}
 		do
 		{
-			std::cout << "Unesite korisnicko ime: ";
+			std::cout << "UNESITE ZELJENO KORISNICKO IME: ";
 			std::cin >> ime;
 		} while (std::any_of(niz, niz + brojElemenata, [&ime](Korisnik&a) {return a.getIme() == ime; }));
 		do
 		{
-			std::cout << "Unesite lozinku: ";
+			std::cout << "UNESITE LOZINKU: ";
 			std::cin >> loz;
 		} while (loz.length() < 6);
 		do
 		{
-			std::cout << "Administrator [A}, Zaposleni [Z] ? ";
+			std::cout << "ADMINISTRATOR [A}, ZAPOSLENI [Z] ? ";
 			std::cin >> status;
 		} while (status != "A"&&status != "Z");
 		if (brojElemenata == kap)
@@ -143,112 +70,216 @@ void Administrator::kreirajNalog()
 		}
 		dat << "END";
 		dat.close();
+		int izmene = 0;
+		std::fstream iz("Izmene.txt", std::ios::in);
+		if (iz) { iz >> izmene; iz.close(); }
+		izmene++;
+		iz.open("Izmene.txt", std::fstream::out);
+		iz << izmene;
+		iz.close();
 		delete[] niz;
+		std::cout << "===================================================================" << std::endl;
+		std::cout << "||NALOG USPJESNO DODAN, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+		std::cout << "===================================================================" << std::endl;
+		std::cin.get();
+		std::cin.get();
+		system("cls");
 }
 
 
 void Administrator::izmjenaNaloga()
 {
-	/*std::ifstream dat("Korisnici.txt");
-	std::string novi,pom1,pom2,pom3,novi1,pom11,pom22,pom33;
-	bool flag = false;
-	int lokacija = 0;
-	do
+	system("cls");
+	int kap = 5;
+	int brojElemenata = 0;
+	Korisnik* niz = new Korisnik[kap];
+	std::string ime, loz, status;
+	std::fstream dat("Korisnici.txt", std::fstream::in);
+	if (dat)
 	{
-		dat.clear();
-		dat.seekg(0);
-		flag = true;
-		std::cout << "Korisnicko ime: ";
-		std::cin >> novi;
-		while (!dat.eof() && flag)
+		while (!dat.eof())
 		{
-			dat >> pom1 ;
-			dat >> pom2;
-			dat >> pom3;
-			if (pom1 == novi)
+			if (brojElemenata == kap)
 			{
-				flag = false;
-				lokacija = dat.tellg();
+				Korisnik* novi = new Korisnik[kap *= 2];
+				std::copy(niz, niz + brojElemenata, novi);
+				delete[] niz;
+				niz = novi;
 			}
+			dat >> ime >> loz >> status;
+			if (ime == "END") break;
+			niz[brojElemenata].setIme(ime);
+			niz[brojElemenata].setLozinka(loz);
+			niz[brojElemenata].setStatus(status);
+			brojElemenata++;
 		}
-	} while (flag);
-	dat.close();
-
-	std::fstream dat1("Korisnici.txt",std::ios::in|std::ios::out);
-	char c;
+		dat.close();
+	}
+	Korisnik* nadjeni = nullptr;
 	do
 	{
-		
-		std::cout << "Promjena KORISKICKOG IMENA[1]   LOZINKE[2]: ";
-		std::cin >> c;
-		if (c == '1')
-		{
-			std::ifstream dat2("Korisnici.txt");
-			bool flag = false;
-			do
-			{
-				flag = true;
-				std::cout << "Novo korisnicko ime: ";
-				std::cin >> novi1;
-				while (!dat2.eof() && flag)
-				{
-					dat2 >> pom11 >> pom22>> pom33;
-					if (pom1 == novi1)
-					{
-						lokacija = dat2.tellg();
-						flag = false;
-					}
-				}
-			} while (!flag);
-			dat2.close();
-			dat1.clear();
-			long duzina = pom1.length() + pom2.length() + pom3.length() + 2;
-			dat1.seekp(lokacija-duzina,std::ios::beg);
-			//cout << lokacija <<"    "<< duzina<<endl;
-			dat1 << novi1 << " " << pom2 << " " << pom3 << std::endl;
-		}
-	} while (c!='1' && c!='2');
-	dat1.close();*/
-	/*std::string ime, lozinka, status, pomime;
-	std::streamoff lokacija;
-	bool flag;
-	do
-	{
-		flag = true;
-		std::fstream dat("Korisnici.txt", std::fstream::in);
-		//dat.seekg(0, std::fstream::beg);
-		std::cout << "Unesite korisnicko ime: ";
+		std::cout << "UNESITE IME ZA PRETRAGU: ";
 		std::cin >> ime;
-		if (dat)
+		nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
+		if (nadjeni == niz + brojElemenata) nadjeni = nullptr;
+	} while (!nadjeni);
+	std::cout << "STA ZELITE DA MIJENJATE?" << std::endl << "KORISICNICKO IME [1], LOZINKU [2], STATUS KORISNIKA [3]: ";
+	char c11;
+	std::cin >> c11;
+	if (c11 == '1') {
+		do
 		{
-			while (!dat.eof() && flag)
+			std::cout << "UNESITE NOVO KORISNICKO IME: ";
+			std::cin >> ime;
+
+		} while (std::any_of(niz, niz + brojElemenata, [&ime](Korisnik&a) {return a.getIme() == ime; })); nadjeni->setIme(ime);
+	}
+	if (c11 == '2')
+	{do{
+		std::cout << "UNESITE NOVU LOZINKU: ";
+		std::cin >> loz;
+
+	} while (loz.length() < 6);
+	nadjeni->setLozinka(loz);
+}
+	if (c11 == '3') {
+		do
+		{
+			std::cout << "ADMINISTRATOR [A}, ZAPOSLENI [Z] ? ";
+			std::cin >> status;
+			
+		} while (status != "A"&&status != "Z");
+		nadjeni->setStatus(status);
+	}
+	dat.open("Korisnici.txt", std::fstream::out);
+	for (int i = 0; i < brojElemenata; i++)
+	{
+		dat << niz[i].getIme() << " " << niz[i].getLozinka() << " " << niz[i].getStatus() << std::endl;
+	}
+	dat << "END";
+	dat.close();
+	int izmene = 0;
+	std::fstream iz("Izmene.txt", std::ios::in);
+	if (iz) { iz >> izmene; iz.close(); }
+	izmene++;
+	iz.open("Izmene.txt", std::fstream::out);
+	iz << izmene;
+	iz.close();
+	delete[] niz;
+	std::cout << "=======================================================================" << std::endl;
+	std::cout << "||NALOG USPJESNO IZMJENJEN, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=======================================================================" << std::endl;
+	std::cin.get();
+	std::cin.get();
+	system("cls");
+}
+
+void Administrator::pisiSve()
+{
+	system("cls");
+	int kap = 5;
+	int brojElemenata = 0;
+	Korisnik* niz = new Korisnik[kap];
+	std::string ime, loz, status;
+	std::fstream dat("Korisnici.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			if (brojElemenata == kap)
 			{
-				lokacija = dat.tellg();
-				dat >> pomime >> lozinka >> status;
-				if (pomime == ime) flag = false;
+				Korisnik* novi = new Korisnik[kap *= 2];
+				std::copy(niz, niz + brojElemenata, novi);
+				delete[] niz;
+				niz = novi;
 			}
-			dat.close();
+			dat >> ime >> loz >> status;
+			if (ime == "END") break;
+			niz[brojElemenata].setIme(ime);
+			niz[brojElemenata].setLozinka(loz);
+			niz[brojElemenata].setStatus(status);
+			brojElemenata++;
 		}
-	} while (flag);
-	std::fstream dat("Korisnici.txt", std::fstream::in|std::fstream::out);
-	dat.seekp(lokacija, std::fstream::beg);
+		dat.close();
+	}
+	std::cout << "||===============================================||" << std::endl;
+	std::cout<<"||"<<std::setw(20)<<std::setfill(' ')<<"KORISNICKO IME"<< std::setw(20)<<" LOZINKA"<<std::setw(6)<<" STATUS" << "||"<<std::endl;
+	std::cout << "||===============================================||" << std::endl;
+	for (int i = 0; i < brojElemenata;i++)
+	std::cout << "||"<<std::setw(20)<<std::setfill(' ') << niz[i].getIme() << std::setw(20) << niz[i].getLozinka() << std::setw(7) << niz[i].getStatus() << "||"<<std::endl;
+	std::cout << "||===============================================||" << std::endl;
+	delete[] niz;
+	std::cin.get();
+	std::cin.get();
+}
+
+void Administrator::brisiNalog()
+{
+	system("cls");
+	int kap = 5;
+	int brojElemenata = 0;
+	Korisnik* niz = new Korisnik[kap];
+	std::string ime, loz, status;
+	std::fstream dat("Korisnici.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			if (brojElemenata == kap)
+			{
+				Korisnik* novi = new Korisnik[kap *= 2];
+				std::copy(niz, niz + brojElemenata, novi);
+				delete[] niz;
+				niz = novi;
+			}
+			dat >> ime >> loz >> status;
+			if (ime == "END") break;
+			niz[brojElemenata].setIme(ime);
+			niz[brojElemenata].setLozinka(loz);
+			niz[brojElemenata].setStatus(status);
+			brojElemenata++;
+		}
+		dat.close();
+	}
+	Korisnik* nadjeni = nullptr;
 	do
 	{
-		std::cout << "Unesite zeljenu lozinku: ";
-		std::cin >> lozinka;
-	} while (lozinka.length() < 6);
-	do
+		std::cout << "UNESITE IME ZA PRETRAGU: ";
+		std::cin >> ime;
+		nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
+		if (nadjeni == niz + brojElemenata) nadjeni = nullptr;
+	} while (!nadjeni||nadjeni->getIme()==this->getIme());
+	dat.open("Korisnici.txt", std::fstream::out);
+	std::for_each(niz,nadjeni,[&dat](Korisnik& a)
 	{
-		std::cout << "Administrator [A}, Zaposleni [Z] ? ";
-		std::cin >> status;
-	} while (status != "A"&&status != "Z");
-	dat << ime << " " << lozinka << " " << status << std::endl;
-	dat.close();*/
+		dat << a.getIme() << " " << a.getLozinka() << " " << a.getStatus() << std::endl;
+	});
+	std::for_each(nadjeni+1, niz+brojElemenata, [&dat](Korisnik& a)
+	{
+		dat << a.getIme() << " " << a.getLozinka() << " " << a.getStatus() << std::endl;
+	});
+	dat << "END";
+	dat.close();
+	std::cout << "======================================================================" << std::endl;
+	std::cout << "||NALOG USPJESNO IZBRISAN. PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "======================================================================" << std::endl;
+	int izmene = 0;
+	std::fstream iz("Izmene.txt", std::ios::in);
+	if (iz) { iz >> izmene; iz.close(); }
+	izmene++;
+	iz.open("Izmene.txt", std::fstream::out);
+	iz << izmene;
+	iz.close();
+	delete[] niz;
+	std::cin.get();
+	std::cin.get();
+	system("cls");
 
 }
 
 void Administrator::podesavanjeBoje()
 {
+	system("cls");
 	std::fstream dat("Kontrola.txt",std::ios::out);
 	char c;
 	do {
@@ -264,12 +295,31 @@ void Administrator::podesavanjeBoje()
 			dat << "color F0" << std::endl;
 		else if(c != '1'&& c != '2'&& c != '3') std::cout << "POGRESNA OPCIJA!" << std::endl;
 	} while (c != '1'&& c != '2'&& c!='3');
-	std::cout << "PROMJENE CE BITI IZVRSENE NAKON PONOVNOG POKRETANJA." << std::endl;
+	std::cout << "=================================================================================================="<<std::endl;
+	std::cout << "||PROMJENE CE BITI IZVRSENE NAKON PONOVNOG POKRETANJA, pritisnite bilo koji taster da nastavite.||" << std::endl;
+	std::cout << "==================================================================================================" << std::endl;
 		dat.close();
+		std::cin.get();
+		std::cin.get();
+		system("cls");
+}
+
+void Administrator::brojIzmjena()
+{
+	int izmene = 0;
+	std::fstream iz("Izmene.txt", std::ios::in);
+	if (iz) { iz >> izmene; iz.close(); }
+	std::cout << "====================================="<<std::endl;
+	std::cout << "||UKUPAN BROJ IZMJENA IZNOSI" << std::setw(7)<<izmene<<"||"<<std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cin.get();
+	std::cin.get();
+	system("cls");
 }
 
 void Administrator::ukupanBrojNaloga()
 {
+
 	std::fstream dat("Korisnici.txt", std::ios::in);
 	int br = 0;
 	std::string a, b, c;
@@ -283,29 +333,50 @@ void Administrator::ukupanBrojNaloga()
 		dat.close();
 	}	
 	char cha;
+	br--;
 	do
 	{
 		std::cout << "ISPIS NA KONZOLU[1], TEKSTUALNI FAJL[2]: ";
 		std::cin >> cha;
 		if (cha == '1')
 		{
-			std::cout << "=============================================" << std::endl;
-			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << "||" << std::endl;
-			std::cout << "=============================================" << std::endl;
+			std::cout << "========================================================================================" << std::endl;
+			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
+			std::cout << "========================================================================================" << std::endl;
 		}
 		else if (cha == '2')
 		{
 			std::fstream out("BrojNaloga.txt", std::ios::out);
-			out << "=============================================" << std::endl;
+			out << "==============================================" << std::endl;
 			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << "||" << std::endl;
-			out << "=============================================" << std::endl;
-			std::cout << "=====================================================================" << std::endl;
-			std::cout << "||INFORMACIJA KOJA STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt||" << std::endl;
-			std::cout << "=====================================================================" << std::endl;
+			out << "==============================================" << std::endl;
+			std::cout << "================================================================================================================" << std::endl;
+			std::cout << "||INFORMACIJA KOJA STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt, pritisnite bilo koji taster da nastavite.||" << std::endl;
+			std::cout << "================================================================================================================" << std::endl;
 			out.close();
 		}
+		std::cin.get();
+		std::cin.get();
+		system("cls");
 
 	} while (cha != '1'&&cha != '2');
 
 
+}
+
+void Administrator::dodajObavjestenje()
+{
+	std::string poruka;
+	std::cout << "UNESITE OBAVJESTENJE KOJE ZELITE:" << std::endl;
+	std::cin.get();
+	getline(std::cin, poruka);
+	std::fstream por("Poruka.txt", std::fstream::out);
+	por << poruka;
+	por.close();
+	std::cout << "===========================================================================" << std::endl;
+	std::cout << "||OBAVJESTENJE USPJESNO DODANO, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "===========================================================================" << std::endl;
+	std::cin.get();
+	std::cin.get();
+	system("cls");
 }
