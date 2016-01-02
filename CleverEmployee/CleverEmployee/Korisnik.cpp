@@ -19,6 +19,16 @@ std::string Korisnik::getLozinka()
 	return lozinka;
 }
 
+std::string Korisnik::getStatus()
+{
+	return status;
+}
+
+void Korisnik::setStatus(std::string s)
+{
+	status = s;
+}
+
 void Korisnik::setIme(std::string ime)
 {
 	kor_ime = ime;

@@ -11,7 +11,7 @@ Administrator::~Administrator()
 
 void Administrator::kreirajNalog()
 {
-	std::ifstream dat("Korisnici.txt");
+	/*std::ifstream dat("Korisnici.txt");
 
 
 	std::string pom_ime;
@@ -50,13 +50,106 @@ void Administrator::kreirajNalog()
 			dat1 << "A" << std::endl;
 		else dat1 << "Z" << std::endl;
 	} while (c != '1' && c != '2');
-	dat1.close();
+	dat1.close();*/
+	/*std::fstream dat("Korisnici.txt", std::fstream::in);
+	std::string ime,lozinka,status,pomime;
+	bool flag;
+	do
+	{
+		flag = true;
+		dat.seekg(0, std::fstream::beg);
+		std::cout << "Unesite korisnicko ime: ";
+		std::cin >> ime;
+		if (dat)
+		{
+			while (!dat.eof() && flag)
+			{
+				dat >> pomime >> lozinka >> status;
+				if (pomime == ime) flag = false;
+			}
+		}
+
+	} while (!flag);
+	dat.close();
+	do
+	{
+		std::cout << "Unesite zeljenu lozinku: ";
+		std::cin >> lozinka;
+	} while (lozinka.length() < 6);
+	do
+	{
+		std::cout << "Administrator [A}, Zaposleni [Z] ? ";
+		std::cin >> status;
+	} while (status!="A"&&status!="Z");
+	dat.open("Korisnici.txt", std::fstream::app);
+
+	dat<< ime <<" "<<lozinka << " "<<status<<std::endl;
+	dat.close();*/
+	int kap = 5;
+	int brojElemenata = 0;
+	Korisnik* niz = new Korisnik[kap];
+	std::string ime, loz, status;
+	std::fstream dat("Korisnici.txt", std::fstream::in);
+		if (dat)
+		{
+			while (!dat.eof())
+			{
+				if (brojElemenata == kap)
+				{
+					Korisnik* novi = new Korisnik[kap *= 2];
+					std::copy(niz, niz + brojElemenata, novi);
+					delete[] niz;
+					niz = novi;
+				}
+				dat >> ime >> loz >> status;
+				if (ime == "END") break;
+				niz[brojElemenata].setIme(ime);
+				niz[brojElemenata].setLozinka(loz);
+				niz[brojElemenata].setStatus(status);
+				brojElemenata++;
+			}
+			dat.close();
+		}
+		do
+		{
+			std::cout << "Unesite korisnicko ime: ";
+			std::cin >> ime;
+		} while (std::any_of(niz, niz + brojElemenata, [&ime](Korisnik&a) {return a.getIme() == ime; }));
+		do
+		{
+			std::cout << "Unesite lozinku: ";
+			std::cin >> loz;
+		} while (loz.length() < 6);
+		do
+		{
+			std::cout << "Administrator [A}, Zaposleni [Z] ? ";
+			std::cin >> status;
+		} while (status != "A"&&status != "Z");
+		if (brojElemenata == kap)
+		{
+			Korisnik* novi = new Korisnik[kap *= 2];
+			std::copy(niz, niz + brojElemenata, novi);
+			delete[] niz;
+			niz = novi;
+		}
+		niz[brojElemenata].setIme(ime);
+		niz[brojElemenata].setLozinka(loz);
+		niz[brojElemenata].setStatus(status);
+		brojElemenata++;
+		dat.open("Korisnici.txt", std::fstream::out);
+		for (int i = 0; i < brojElemenata;i++)
+		{
+			dat << niz[i].getIme() << " " << niz[i].getLozinka() << " " << niz[i].getStatus() << std::endl; 
+		}
+		dat << "END";
+		dat.close();
+		delete[] niz;
 }
 
 
 void Administrator::izmjenaNaloga()
 {
-	std::ifstream dat("Korisnici.txt");
+	/*std::ifstream dat("Korisnici.txt");
 	std::string novi,pom1,pom2,pom3,novi1,pom11,pom22,pom33;
 	bool flag = false;
 	int lokacija = 0;
@@ -115,7 +208,42 @@ void Administrator::izmjenaNaloga()
 			dat1 << novi1 << " " << pom2 << " " << pom3 << std::endl;
 		}
 	} while (c!='1' && c!='2');
-	dat1.close();
+	dat1.close();*/
+	/*std::string ime, lozinka, status, pomime;
+	std::streamoff lokacija;
+	bool flag;
+	do
+	{
+		flag = true;
+		std::fstream dat("Korisnici.txt", std::fstream::in);
+		//dat.seekg(0, std::fstream::beg);
+		std::cout << "Unesite korisnicko ime: ";
+		std::cin >> ime;
+		if (dat)
+		{
+			while (!dat.eof() && flag)
+			{
+				lokacija = dat.tellg();
+				dat >> pomime >> lozinka >> status;
+				if (pomime == ime) flag = false;
+			}
+			dat.close();
+		}
+	} while (flag);
+	std::fstream dat("Korisnici.txt", std::fstream::in|std::fstream::out);
+	dat.seekp(lokacija, std::fstream::beg);
+	do
+	{
+		std::cout << "Unesite zeljenu lozinku: ";
+		std::cin >> lozinka;
+	} while (lozinka.length() < 6);
+	do
+	{
+		std::cout << "Administrator [A}, Zaposleni [Z] ? ";
+		std::cin >> status;
+	} while (status != "A"&&status != "Z");
+	dat << ime << " " << lozinka << " " << status << std::endl;
+	dat.close();*/
 
 }
 
@@ -145,12 +273,15 @@ void Administrator::ukupanBrojNaloga()
 	std::fstream dat("Korisnici.txt", std::ios::in);
 	int br = 0;
 	std::string a, b, c;
-	while (!dat.eof())
+	if (dat)
 	{
-		dat >> a >> b >> c;
+		while (!dat.eof())
+		{
+			dat >> a >> b >> c;
 			br++;
-	}
-	dat.close();
+		}
+		dat.close();
+	}	
 	char cha;
 	do
 	{

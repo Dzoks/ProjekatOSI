@@ -162,6 +162,9 @@
     <ClInclude Include="Niz.h" />
     <ClInclude Include="Zaposleni.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Korisnici.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -17,9 +17,11 @@ int main()
 		system(cpozadina);
 	}
 	Administrator a;
-	//a.kreirajNalog();
-	//a.izmjenaNaloga();
-	//a.ukupanBrojNaloga();
-	a.podesavanjeBoje();
+	char c;
+	do {
+		a.kreirajNalog();
+		cin >> c;
+	} while (c != '0');
+	a.ukupanBrojNaloga();
 	return 0;
 }
