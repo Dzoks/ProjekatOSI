@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Artikal.h"
+#include "Zaposleni.h"
 #include "Administrator.h"
 #include "Korisnik.h"
 #include "Niz.h"
@@ -8,12 +9,10 @@ using namespace std;
 int main()
 {
 	Niz b;
-	b.ucitajDatoteku();
-	b.print();
+	Zaposleni z;
 	b.dodajArtikal();
-	b.brisiArtikal();
-	b.brisiArtikal();
+	b.dodajArtikal();
+	z.izmjenaArtikla(b);
 	b.print();
-	b.pisiDatoteku();
 	return 0;
 }

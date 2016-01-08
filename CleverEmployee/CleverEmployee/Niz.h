@@ -7,6 +7,7 @@
 using namespace std;
 class Niz
 {
+	friend class Zaposleni;
 	friend std::ostream& operator<<(std::ostream&, const Niz&);
 public:
 	Niz();

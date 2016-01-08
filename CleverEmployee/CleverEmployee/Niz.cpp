@@ -83,7 +83,10 @@ void Niz::traziPoSifri()
 		ispisi_heder();
 		std::cout << a;
 	}
-	else std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
+	else
+	{
+		std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
+	}
 }
 
 void Niz::traziPoNazivu()
