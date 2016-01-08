@@ -1,14 +1,16 @@
 #pragma once
+#include <iostream>
+#include <string>
 #include "Niz.h"
 #include "Korisnik.h"
-class Zaposleni :
-	public Korisnik
+class Zaposleni : public Korisnik
 {
 public:
 	Zaposleni();
 	~Zaposleni();
-	void izmjenaArtikla(Niz, int);
-	void prodajArtikal(Niz);
+	void izmjenaArtikla(Niz&);
+	void prodajArtikal(Niz&);
+	void dodavanjeNovogProizvoda(Niz&);
 	void statistikaDan();
 	void statistikaDanSvi();
 	void statistikaSedmica();
@@ -17,6 +19,5 @@ public:
 	void statistikaMjesecSvi();
 	void statistikaGodina();
 	void statistikaGodinaSvi();
-	void dodavanjeNovogProizvoda(Niz&);
 };
 

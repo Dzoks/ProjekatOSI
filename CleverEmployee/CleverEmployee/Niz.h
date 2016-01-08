@@ -1,18 +1,27 @@
 #pragma once
 #include "Artikal.h"
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <fstream>
+using namespace std;
 class Niz
 {
+	friend class Zaposleni;
 	friend std::ostream& operator<<(std::ostream&, const Niz&);
 public:
 	Niz();
 	~Niz();
-	Niz& operator+=(const Artikal&);
-	Niz& operator-=(int);
-	void traziPoSifri(int);
-	void traziPoNazivu(std::string);
-
+	void ucitajDatoteku();
+	void pisiDatoteku();
+	bool dodajArtikal();//dodaje novi artikal u niz
+	bool brisiArtikal();//brise artikal iz niza
+	void traziPoSifri();//pronadje traženi Artikal i ispiše ga
+	void traziPoNazivu();
+	void print();
 private:
-	Artikal *niz;
-	int kapacitet, trenutniBroj;
+	std::vector<Artikal> niz;
+
+	void ispisi_heder();//ispisuje formatirano CIJENA KOLICINA
 };
 
