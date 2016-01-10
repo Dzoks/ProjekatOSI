@@ -19,7 +19,7 @@ std::string Korisnik::getLozinka()
 	return lozinka;
 }
 
-std::string Korisnik::getStatus()
+std::string Korisnik::getStatus()//vraca status
 {
 	return status;
 }
