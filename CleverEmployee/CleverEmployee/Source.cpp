@@ -21,7 +21,7 @@ int main()
 	{
 		string p;
 		getline(poruka, p);
-		cout << "PORUKA ADMINISTRATORA:" << endl<< p << endl;
+		cout << "PORUKA ADMINISTRATORA:" << endl<< p << endl;//ispis poruke
 	}
 	Korisnik pom;
 	pom.prijavaNaSistem();
