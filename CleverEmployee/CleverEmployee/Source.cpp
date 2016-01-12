@@ -1,12 +1,12 @@
 #include <iostream>
-
 #include "Artikal.h"
 #include "Administrator.h"
 #include "Korisnik.h"
-
+#include <windows.h>
 using namespace std;
 int main()
 {
+	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	fstream boja("Kontrola.txt", ios::in);
 	if (boja)
 	{
