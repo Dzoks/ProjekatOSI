@@ -31,7 +31,7 @@ void Niz::pisiDatoteku()
 
 bool Niz::dodajArtikal()
 {
-	Artikal art;
+	Artikal art;//treba dodati da sifra ne smije biti ista
 	std::cin >> art;
 	niz.push_back(art);
 	return true;

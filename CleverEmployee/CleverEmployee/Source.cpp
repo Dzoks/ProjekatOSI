@@ -3,7 +3,7 @@
 #include "Artikal.h"
 #include "Administrator.h"
 #include "Korisnik.h"
-
+#include "Niz.h"
 using namespace std;
 int main()
 {
@@ -78,4 +78,13 @@ int main()
 		
 	}
 	else { cout << "WORK IN PROGRESS!" << endl; }
+
+	/*Niz b;
+	b.ucitajDatoteku();
+	b.print();
+	b.dodajArtikal();
+	b.print();
+	b.brisiArtikal();
+	b.traziPoNazivu();
+	b.print();*/
 }

@@ -209,8 +209,12 @@ void Administrator::pisiSve()
 	std::cout << "||"<<std::setw(20)<<std::setfill(' ') << niz[i].getIme() << std::setw(20) << niz[i].getLozinka() << std::setw(7) << niz[i].getStatus() << "||"<<std::endl;
 	std::cout << "||===============================================||" << std::endl;
 	delete[] niz;
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 	std::cin.get();
 	std::cin.get();
+	system("cls");
 }
 
 void Administrator::brisiNalog()
@@ -309,9 +313,9 @@ void Administrator::brojIzmjena()
 	int izmene = 0;
 	std::fstream iz("Izmene.txt", std::ios::in);
 	if (iz) { iz >> izmene; iz.close(); }
-	std::cout << "====================================="<<std::endl;
-	std::cout << "||UKUPAN BROJ IZMJENA IZNOSI" << std::setw(7)<<izmene<<"||"<<std::endl;
-	std::cout << "=====================================" << std::endl;
+	std::cout << "================================================================================"<<std::endl;
+	std::cout << "||UKUPAN BROJ IZMJENA IZNOSI" << std::setw(7)<<izmene<<", pritisnite bilo koji taster da nastavite.||"<<std::endl;
+	std::cout << "================================================================================" << std::endl;
 	std::cin.get();
 	std::cin.get();
 	system("cls");
@@ -340,18 +344,18 @@ void Administrator::ukupanBrojNaloga()
 		std::cin >> cha;
 		if (cha == '1')
 		{
-			std::cout << "========================================================================================" << std::endl;
+			std::cout << "================================================================================" << std::endl;
 			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
-			std::cout << "========================================================================================" << std::endl;
+			std::cout << "================================================================================" << std::endl;
 		}
 		else if (cha == '2')
 		{
 			std::fstream out("BrojNaloga.txt", std::ios::out);
 			out << "==============================================" << std::endl;
-			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << "||" << std::endl;
+			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
 			out << "==============================================" << std::endl;
 			std::cout << "================================================================================================================" << std::endl;
-			std::cout << "||INFORMACIJA KOJA STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt, pritisnite bilo koji taster da nastavite.||" << std::endl;
+			std::cout << "||INFORMACIJA KOJU STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt, pritisnite bilo koji taster da nastavite.||" << std::endl;
 			std::cout << "================================================================================================================" << std::endl;
 			out.close();
 		}
@@ -367,7 +371,7 @@ void Administrator::ukupanBrojNaloga()
 void Administrator::dodajObavjestenje()
 {
 	std::string poruka;
-	std::cout << "UNESITE OBAVJESTENJE KOJE ZELITE:" << std::endl;
+	std::cout << "UNESITE OBAVJESTENJE KOJE ZELITE:" << std::endl;//unos obavjestenja
 	std::cin.get();
 	getline(std::cin, poruka);
 	std::fstream por("Poruka.txt", std::fstream::out);
@@ -377,6 +381,6 @@ void Administrator::dodajObavjestenje()
 	std::cout << "||OBAVJESTENJE USPJESNO DODANO, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
 	std::cout << "===========================================================================" << std::endl;
 	std::cin.get();
-	std::cin.get();
+	//std::cin.get();
 	system("cls");
 }
