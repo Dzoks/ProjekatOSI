@@ -1,3 +1,4 @@
-12345 Marmelada od_sljiva 5 6
-14785 jabuke nema_opisa 5 4
-25685 Kruske domace 3 4
+965 KBG nema_opis 2 8
+258 OKFD nema_opis 2 7
+147 JVF nema_opis 5 7
+-1

@@ -16,6 +16,8 @@ void Niz::ucitajDatoteku()
 	while (!dat.eof())
 	{
 		dat >> a.sifra >> a.naziv >> a.opis >> a.cijena >> a.kolicina;
+		if (a.getSifra() == -1)
+			break;
 		niz.push_back(a);
 	}
 	dat.close();
@@ -26,15 +28,30 @@ void Niz::pisiDatoteku()
 	ofstream dat("Artikli.txt");
 	for (int i = 0; i < niz.size(); i++)
 		dat << niz[i].sifra << " " << niz[i].naziv << " " << niz[i].opis << " " << niz[i].cijena << " " << niz[i].kolicina << std::endl;
+	dat << -1;
 	dat.close();
 }
 
 bool Niz::dodajArtikal()
 {
-	Artikal art;//treba dodati da sifra ne smije biti ista
-	std::cin >> art;
-	niz.push_back(art);
-	return true;
+	bool flag = true;
+	do
+	{
+		Artikal art;
+		std::cin >> art;
+		int i;
+		for (i = 0; i < niz.size(); i++)
+			if (niz[i].getSifra() == art.sifra)
+				break;
+		if (i == niz.size())
+		{
+			niz.push_back(art);
+			flag = false;
+		}
+		else
+			std::cout << "To je postojeca sifra!" << std::endl;
+	} while (flag);
+	return !flag;
 }
 
 bool Niz::brisiArtikal()
