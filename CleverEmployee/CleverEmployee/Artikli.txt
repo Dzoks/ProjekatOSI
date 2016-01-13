@@ -1,4 +1,4 @@
-965 KBG nema_opis 2 8
-258 OKFD nema_opis 2 7
-147 JVF nema_opis 5 7
+12344 Jabuke nema_opis 11 12.5
+1234 Banane nema_opis 31 51
+988 Meso krmece 32 9
 -1

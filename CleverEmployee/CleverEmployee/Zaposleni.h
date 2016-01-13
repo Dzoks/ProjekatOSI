@@ -3,6 +3,7 @@
 #include <string>
 #include "Niz.h"
 #include "Korisnik.h"
+#include <ctime>
 class Zaposleni : public Korisnik
 {
 public:
@@ -11,12 +12,15 @@ public:
 	void izmjenaArtikla(Niz&);
 	void prodajArtikal(Niz&);
 	void statistikaDan();
-	void statistikaDanSvi();
 	void statistikaSedmica();
-	void statistikaSedmicaSvi();
 	void statistikaMjesec();
-	void statistikaMjesecSvi();
 	void statistikaGodina();
-	void statistikaGodinaSvi();
+	void statistikaKupci();
+	
 };
 
+struct statistika
+{
+	int h, m, s, day, month, year,sifra;
+	double kolicina, cena;
+};

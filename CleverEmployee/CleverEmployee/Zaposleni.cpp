@@ -1,6 +1,68 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "Zaposleni.h"
 #include <algorithm>
-
+#include <string>
+int prestupna(int godina)
+{
+	return
+		!(godina & 4)          
+		&&
+		(
+			godina % 100         
+			|| !(godina / 100 & 4)
+			);
+}
+void zavrtiza7(int& d, int&  m, int&  y)
+{
+	int dd = d;
+	int mm = m;
+	int yy = y;
+	dd -= 7;
+	if (dd <= 0)
+	{
+		mm--;
+		if (mm == 0) {
+			yy--;
+			mm = 12;
+		}
+		if (mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12)
+			dd = 31;
+		else if (m == 2)
+		{
+			if (prestupna(yy))
+				dd = 29;
+			else dd = 28;
+		}
+		else dd = 30;
+	}
+	d = dd;
+	m = mm;
+	y = yy;
+}
+void zavrtizamesec(int& d, int&  m, int&  y)
+{
+	int dd = d;
+	int mm = m;
+	int yy = y;
+	mm--;
+	if (mm == 0)
+	{
+		mm = 12;
+		yy--;
+	}
+	if (mm == 4 || mm == 6 || mm == 9 || mm == 11)
+		if (dd == 31) dd--;
+	else if (m == 2)
+	{
+		if (prestupna(yy))
+			if (dd > 29) dd = 29;
+		else if (dd > 28) dd = 28;
+	}
+	d = dd;
+	m = mm;
+	y = yy;
+}
 Zaposleni::Zaposleni(std::string username, std::string password, std::string status):Korisnik(username, password, status)
 {}
 
@@ -75,8 +137,47 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 void Zaposleni::prodajArtikal(Niz& niz)
 {
 	std::vector<Artikal> racun;
+	std::vector<statistika> stats;
+	std::fstream stat("Statistika.txt", std::fstream::in);
+	if (stat)
+	{
+		statistika jedinicna;
+		while (!stat.eof())
+		{
+			stat >> jedinicna.day >> jedinicna.month >> jedinicna.year >> jedinicna.h >> jedinicna.m >> jedinicna.s >> jedinicna.sifra >> jedinicna.kolicina >> jedinicna.cena;
+			if (jedinicna.day == -1) break;
+			stats.push_back(jedinicna);
+		}
+		stat.close();
+	}
 	int sifra, i,pom;
 	double kolicina,suma=0;
+	niz.print();
+	std::string kupac;
+	std::cout << "Unesite ime kupca: ";
+	std::cin >> kupac;
+	int kap = 5;
+	int brojElemenata = 0;
+	std::string* kupci = new std::string[kap];
+	std::string ime;
+	std::fstream dat("Kupci.txt", std::fstream::in);
+	if (dat)
+	{	while (!dat.eof())
+		{
+			if (brojElemenata == kap)
+			{
+				std::string* novi = new std::string[kap *= 2];
+				std::copy(kupci, kupci + brojElemenata, novi);
+				delete[] kupci;
+				kupci = novi;
+			}
+			dat >> ime;
+			if (ime == "END") break;
+			kupci[brojElemenata] = ime;
+			brojElemenata++;
+		}
+		dat.close();
+	}
 	do
 	{
 		do
@@ -105,6 +206,15 @@ void Zaposleni::prodajArtikal(Niz& niz)
 		std::cout << "DA [1], NE[2]: ";
 		std::cin >> pom;
 	} while (pom != 2);
+	statistika vreme;
+	time_t t = time(0);
+	struct tm * now = localtime(&t);
+	vreme.day = now->tm_mday;
+	vreme.month = now->tm_mon + 1;
+	vreme.year = now->tm_year + 1900;
+	vreme.s = now->tm_sec;
+	vreme.m = now->tm_min;
+	vreme.h = now->tm_hour;
 	std::cout << "========================================================" << std::endl;
 	std::cout << "                           RACUN                        " << std::endl;
 	std::cout << "========================================================" << std::endl;
@@ -114,8 +224,204 @@ void Zaposleni::prodajArtikal(Niz& niz)
 	{
 		std::cout << racun[i].getNaziv() << " " << racun[i].getSifra() << " " << racun[i].getKolicina() << " " << racun[i].getKolicina()* racun[i].getCijena() << std::endl;
 		suma += racun[i].getCijena()*racun[i].getKolicina();
+		vreme.sifra = racun[i].getSifra();
+		vreme.kolicina = racun[i].getKolicina();
+		vreme.cena = racun[i].getCijena()*racun[i].getKolicina();
+		stats.push_back(vreme);
 	}
 	std::cout << "========================================================" << std::endl;
 	std::cout << "UKUPNO:                                  " << suma << std::endl;
 	std::cout << "========================================================" << std::endl;
+	std::cout << "KUPAC:                                        " << kupac << std::endl;
+	std::cout << "========================================================" << std::endl;
+	if (brojElemenata == kap)
+	{
+		std::string* novi = new std::string[kap *= 2];
+		std::copy(kupci, kupci + brojElemenata, novi);
+		delete[] kupci;
+		kupci = novi;
+	}
+	kupci[brojElemenata++] = kupac;
+	dat.open("Kupci.txt", std::fstream::out);
+	for (int i = 0; i < brojElemenata; i++)
+	{
+		dat << kupci[i] << std::endl;
+	}
+	dat << "END";
+	dat.close();
+	stat.open("Statistika.txt", std::fstream::out);
+	for (i = 0; i < stats.size();++i)
+		stat << stats[i].day <<" "<< stats[i].month << " " << stats[i].year << " " << stats[i].h << " " << stats[i].m << " " << stats[i].s << " " << stats[i].sifra << " " << stats[i].kolicina << " " << stats[i].cena<<std::endl;
+	stat << -1;
+	stat.close();
+}
+
+void Zaposleni::statistikaDan()
+{
+	statistika vreme, temp;
+	time_t t = time(0);
+	struct tm * now = localtime(&t);
+	vreme.day = now->tm_mday;
+	vreme.month = now->tm_mon + 1;
+	vreme.year = now->tm_year + 1900;
+	double ukupnaKolicina = 0;
+	double ukupnaCena = 0;
+	std::fstream dat("Statistika.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			dat >> temp.day >> temp.month >> temp.year >> temp.h >> temp.m >> temp.s >> temp.sifra >> temp.kolicina >> temp.cena;
+			if (temp.day == -1) break;
+			if (temp.day == vreme.day&&temp.month == vreme.month&&vreme.year == temp.year) {
+				ukupnaCena += temp.cena;
+				ukupnaKolicina += temp.kolicina;
+			}
+			
+		}
+		dat.close();
+	}
+		std::cout << "Dnevna statistika prodaje za " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+		std::cout << "===============================================================================================" << std::endl;
+		std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
+		std::cout << "Dnevni prihod: " << ukupnaCena << std::endl;
+		std::cout << "===============================================================================================" << std::endl;
+
+	
+}
+
+void Zaposleni::statistikaSedmica()
+{
+	statistika vreme, temp;
+	time_t t = time(0);
+	struct tm * now = localtime(&t);
+	vreme.day = now->tm_mday;
+	vreme.month = now->tm_mon + 1;
+	vreme.year = now->tm_year + 1900;
+	int d = vreme.day;
+	int m = vreme.month;
+	int y = vreme.year;
+	zavrtiza7(d, m, y);
+	double ukupnaKolicina = 0;
+	double ukupnaCena = 0;
+	std::fstream dat("Statistika.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			dat >> temp.day >> temp.month >> temp.year >> temp.h >> temp.m >> temp.s >> temp.sifra >> temp.kolicina >> temp.cena;
+			if (temp.day == -1) break;
+			if (temp.day <= vreme.day&&temp.month <= vreme.month&&vreme.year <= temp.year&&temp.day >= d&&temp.month >= m&&vreme.year>=y) {
+				ukupnaCena += temp.cena;
+				ukupnaKolicina += temp.kolicina;
+			}
+
+		}
+		dat.close();
+	}
+	std::cout << "Sedmicna statistika prodaje za vrijeme: "<<d<<"."<<m<<"."<<y<<". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
+	std::cout << "Sedmicni prihod: " << ukupnaCena << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+
+
+}
+
+void Zaposleni::statistikaMjesec()
+{
+	statistika vreme, temp;
+	time_t t = time(0);
+	struct tm * now = localtime(&t);
+	vreme.day = now->tm_mday;
+	vreme.month = now->tm_mon + 1;
+	vreme.year = now->tm_year + 1900;
+	double ukupnaKolicina = 0;
+	double ukupnaCena = 0;
+	std::fstream dat("Statistika.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			dat >> temp.day >> temp.month >> temp.year >> temp.h >> temp.m >> temp.s >> temp.sifra >> temp.kolicina >> temp.cena;
+			if (temp.day == -1) break;
+			if(temp.day>=1&&temp.day<=vreme.day&&temp.month==vreme.month&&temp.year==vreme.year){
+				ukupnaCena += temp.cena;
+				ukupnaKolicina += temp.kolicina;
+			}
+
+		}
+		dat.close();
+	}
+	std::cout << "Mesecna statistika prodaje za vrijeme: " << 1 << "."<< vreme.month << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
+	std::cout << "Mesecni prihod: " << ukupnaCena << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+
+}
+
+void Zaposleni::statistikaGodina()
+{
+	statistika vreme, temp;
+	time_t t = time(0);
+	struct tm * now = localtime(&t);
+	vreme.day = now->tm_mday;
+	vreme.month = now->tm_mon + 1;
+	vreme.year = now->tm_year + 1900;
+	double ukupnaKolicina = 0;
+	double ukupnaCena = 0;
+	std::fstream dat("Statistika.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			dat >> temp.day >> temp.month >> temp.year >> temp.h >> temp.m >> temp.s >> temp.sifra >> temp.kolicina >> temp.cena;
+			if (temp.day == -1) break;
+			if (temp.month <= vreme.month&&temp.year == vreme.year) {
+				ukupnaCena += temp.cena;
+				ukupnaKolicina += temp.kolicina;
+			}
+
+		}
+		dat.close();
+	}
+	std::cout << "Godisnja statistika prodaje za vrijeme: " << 1 << "." << 1 << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
+	std::cout << "Godisnji prihod: " << ukupnaCena << std::endl;
+	std::cout << "===============================================================================================" << std::endl;
+}
+
+
+void Zaposleni::statistikaKupci()
+{
+	int kap = 5;
+	int brojElemenata = 0;
+	std::string* kupci = new std::string[kap];
+	std::string ime;
+	std::fstream dat("Kupci.txt", std::fstream::in);
+	if (dat)
+	{
+		while (!dat.eof())
+		{
+			if (brojElemenata == kap)
+			{
+				std::string* novi = new std::string[kap *= 2];
+				std::copy(kupci, kupci + brojElemenata, novi);
+				delete[] kupci;
+				kupci = novi;
+			}
+			dat >> ime;
+			if (ime == "END") break;
+			kupci[brojElemenata] = ime;
+			brojElemenata++;
+		}
+		dat.close();
+	}
+	std::cout << "LISTA KUPACA" << std::endl;
+	std::cout << "=============" << std::endl;
+	for (int i = 0; i < brojElemenata; i++)
+		std::cout << kupci[i] << std::endl;
+
 }
