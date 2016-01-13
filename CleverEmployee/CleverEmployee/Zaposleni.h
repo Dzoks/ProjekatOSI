@@ -6,11 +6,10 @@
 class Zaposleni : public Korisnik
 {
 public:
-	Zaposleni();
+	Zaposleni(std::string="",std::string="", std::string="");
 	~Zaposleni();
 	void izmjenaArtikla(Niz&);
 	void prodajArtikal(Niz&);
-	void dodavanjeNovogProizvoda(Niz&);
 	void statistikaDan();
 	void statistikaDanSvi();
 	void statistikaSedmica();

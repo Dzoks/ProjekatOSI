@@ -2,6 +2,8 @@
 #include "Artikal.h"
 #include "Administrator.h"
 #include "Korisnik.h"
+#include "Niz.h"
+#include "Zaposleni.h"
 #include <windows.h>
 using namespace std;
 int main()
@@ -77,5 +79,95 @@ int main()
 		
 		
 	}
-	else { cout << "WORK IN PROGRESS!" << endl; }
+	else 
+	{
+		system("cls");
+		Zaposleni zaposlen(pom.getIme(), pom.getLozinka(), pom.getStatus());
+		cout << "Dobro dosli," << pom.getIme() << "!" << endl;
+		Niz artikli;
+		artikli.ucitajDatoteku();
+		char c;
+		do
+		{
+			cout << "Dodavanje [1], Brisanje [2], Izmjena [3], Pretraga [4], Ispis [5], Prodaja[6], Kraj [0]: ";
+			cin >> c;
+			if (c == '1')
+			{
+				system("cls");
+				artikli.dodajArtikal();
+				cin.get();
+				cin.get();
+				system("cls");
+			}
+			else if (c == '2')
+			{
+				system("cls");
+				artikli.brisiArtikal();
+				cin.get();
+				cin.get();
+				system("cls");
+			}
+			else if (c == '3')
+			{
+				system("cls");
+				zaposlen.izmjenaArtikla(artikli);
+				cin.get();
+				cin.get();
+				system("cls");
+			}
+			else if (c == '4')
+			{
+				system("cls");
+				char ce;
+				do
+				{
+					cout << "Po nazivu [1], Po sifri [2]: ";
+					cin >> ce;
+					if (ce == '1')
+					{
+						system("cls");
+						artikli.traziPoNazivu();
+						cin.get();
+						cin.get();
+						system("cls");
+					}
+					else if (ce == '2')
+					{
+						system("cls");
+						artikli.traziPoSifri();
+						cin.get();
+						cin.get();
+						system("cls");
+					}
+				} while (ce != '1' || ce != '2');
+				system("cls");
+			}
+			else if (c == '5')
+			{
+				system("cls");
+				artikli.print();
+				cin.get();
+				cin.get();
+				system("cls");
+			}
+			else if (c == '6')
+			{
+				system("cls");
+				zaposlen.prodajArtikal(artikli);
+				cin.get();
+				cin.get();
+				system("cls");
+			}
+		} while (c != '0');
+		artikli.pisiDatoteku();
+	}
+
+	/*Niz b;
+	b.ucitajDatoteku();
+	b.print();
+	b.dodajArtikal();
+	b.print();
+	b.brisiArtikal();
+	b.traziPoNazivu();
+	b.print();*/
 }

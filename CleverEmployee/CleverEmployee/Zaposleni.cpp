@@ -1,11 +1,8 @@
 #include "Zaposleni.h"
+#include <algorithm>
 
-
-
-Zaposleni::Zaposleni()
-{
-}
-
+Zaposleni::Zaposleni(std::string username, std::string password, std::string status):Korisnik(username, password, status)
+{}
 
 Zaposleni::~Zaposleni()
 {
@@ -75,7 +72,50 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 	}
 }
 
-void Zaposleni::prodajArtikal(Niz&)
+void Zaposleni::prodajArtikal(Niz& niz)
 {
-
+	std::vector<Artikal> racun;
+	int sifra, i,pom;
+	double kolicina,suma=0;
+	do
+	{
+		do
+		{
+			std::cout << "Unesite sifru artikla: ";
+			std::cin >> sifra;
+			for (i = 0; i < niz.niz.size(); i++)
+				if (niz.niz[i].getSifra() == sifra)
+					break;
+			if (niz.niz.size() == i)
+				std::cout << "Ne postoji sifra!" << std::endl;
+		} while (niz.niz.size() == i);
+		do
+		{
+			std::cout << "Unesite kolicinu koju prodajete: ";
+			std::cin >> kolicina;
+		} while (kolicina<0 || kolicina>niz.niz[i].getKolicina());
+		niz.niz[i].setKolicina(niz.niz[i].getKolicina() - kolicina);
+		racun.push_back(niz.niz[i]);
+		racun.at(racun.size() -1).setKolicina(kolicina);
+		std::vector<Artikal>::iterator it = niz.niz.begin();
+		it += i;
+		if (niz.niz.at(i).getKolicina() == 0)
+			niz.niz.erase(it);
+		std::cout << "Hocete li jos robe prodavati?" << std::endl;
+		std::cout << "DA [1], NE[2]: ";
+		std::cin >> pom;
+	} while (pom != 2);
+	std::cout << "========================================================" << std::endl;
+	std::cout << "                           RACUN                        " << std::endl;
+	std::cout << "========================================================" << std::endl;
+	std::cout << "Naziv          Sifra         Kolicina             Cijena" << std::endl;
+	std::cout << "========================================================" << std::endl;
+	for (i = 0; i < racun.size(); ++i)
+	{
+		std::cout << racun[i].getNaziv() << " " << racun[i].getSifra() << " " << racun[i].getKolicina() << " " << racun[i].getKolicina()* racun[i].getCijena() << std::endl;
+		suma += racun[i].getCijena()*racun[i].getKolicina();
+	}
+	std::cout << "========================================================" << std::endl;
+	std::cout << "UKUPNO:                                  " << suma << std::endl;
+	std::cout << "========================================================" << std::endl;
 }

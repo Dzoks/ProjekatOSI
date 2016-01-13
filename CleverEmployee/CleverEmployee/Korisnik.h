@@ -14,7 +14,7 @@ public:
 	void setStatus(std::string);
 	void setIme(std::string);
 	void setLozinka(std::string);
-	void prijavaNaSistem();//nije rijesen
+	void prijavaNaSistem();
 protected:
 	std::string kor_ime, lozinka,status;
 };
