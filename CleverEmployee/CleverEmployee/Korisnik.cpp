@@ -87,4 +87,27 @@ void Korisnik::prijavaNaSistem()
 		this->status = nadjeni->status;
 
 	}
+	else
+	{
+		std::cout << "Na sistemu ne postoji administratorski nalog." << std::endl << "Da bi mogli koristiti softver, morate napraviti korisnicki nalog. Molimo unesite podatke." << std::endl;
+		std::string ime, loz;
+		std::cout << "Unesite korisnicko ime: ";
+		std::cin >> ime;
+		do {
+			std::cout << "Unesite lozinku:";
+			std::cin >> loz;
+		} while (loz.length() < 6);
+		std::cout << "Nalog uspjesno kreiran, da nastavite pritisnite bilo koji taster." << std::endl;
+		dat.open("Korisnici.txt", std::fstream::out);
+		dat << ime << " " << loz << " A" << std::endl;
+		dat << "END";
+		dat.close();
+		this->kor_ime = ime;
+		this->lozinka = loz;
+		this->status = "A";
+		std::cin.get();
+		std::cin.get();
+		system("cls");
+		//test
+	}
 }
