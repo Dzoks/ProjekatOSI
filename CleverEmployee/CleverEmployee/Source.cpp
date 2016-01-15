@@ -160,51 +160,112 @@ int main()
 			}
 			else if (c == '7')
 			{
-				char c1;
-				do {
-					std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3],Godisnja statistika [4], Lista kupaca [5], Kraj [0]: ";
-					std::cin >> c1;
-					if (c1 == '5')
+				char c2;
+				do
+				{
+					cout << "UKUPNA STATISTIKA [1], ZA ODREDJENI ARTIKAL [2]: ";
+					std::cin >> c2;
+				} while (c2 != '1' && c2 != '2');
+				if (c2 == '1')
+				{
+					char c1;
+					do {
+						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3],Godisnja statistika [4], Lista kupaca [5], Kraj [0]: ";
+						std::cin >> c1;
+						if (c1 == '5')
+						{
+							system("cls");
+							zaposlen.statistikaKupci();
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '1')
+						{
+							system("cls");
+							zaposlen.statistikaDan();
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '2')
+						{
+							system("cls");
+							zaposlen.statistikaSedmica();
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '3')
+						{
+							system("cls");
+							zaposlen.statistikaMjesec();
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '4')
+						{
+							system("cls");
+							zaposlen.statistikaGodina();
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+					} while (c1 != '0');
+				}
+				else
+				{
+					int sifra, i;
+					artikli.print();
+					do
 					{
-						system("cls");
-						zaposlen.statistikaKupci();
-						cin.get();
-						cin.get();
-						system("cls");
-					}
-					else if (c1 == '1')
-					{
-						system("cls");
-						zaposlen.statistikaDan();
-						cin.get();
-						cin.get();
-						system("cls");
-					}
-					else if (c1 == '2')
-					{
-						system("cls");
-						zaposlen.statistikaSedmica();
-						cin.get();
-						cin.get();
-						system("cls");
-					}
-					else if (c1 == '3')
-					{
-						system("cls");
-						zaposlen.statistikaMjesec();
-						cin.get();
-						cin.get();
-						system("cls");
-					}
-					else if (c1 == '4')
-					{
-						system("cls");
-						zaposlen.statistikaGodina();
-						cin.get();
-						cin.get();
-						system("cls");
-					}
-				} while (c1 != '0');
+						std::cout << "Unesite sifru artikla: ";
+						std::cin >> sifra;
+						for (i = 0; i < artikli.niz.size(); i++)
+							if (artikli.niz[i].getSifra() == sifra)
+								break;
+						if (artikli.niz.size() == i)
+							std::cout << "Ne postoji sifra!" << std::endl;
+					} while (artikli.niz.size() == i);
+					char c1;
+					do {
+						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3],Godisnja statistika [4],  Kraj [0]: ";
+						std::cin >> c1;
+						if (c1 == '1')
+						{
+							system("cls");
+							zaposlen.statistikaDanJedan(sifra,artikli,i);
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '2')
+						{
+							system("cls");
+							zaposlen.statistikaSedmicaJedan(sifra, artikli, i);
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '3')
+						{
+							system("cls");
+							zaposlen.statistikaMjesecJedan(sifra, artikli, i);
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+						else if (c1 == '4')
+						{
+							system("cls");
+							zaposlen.statistikaGodinaJedan(sifra, artikli, i);
+							cin.get();
+							cin.get();
+							system("cls");
+						}
+					} while (c1 != '0');
+				}
 			}
 		} while (c != '0');
 		artikli.pisiDatoteku();

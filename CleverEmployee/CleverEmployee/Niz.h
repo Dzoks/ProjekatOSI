@@ -19,8 +19,9 @@ public:
 	void traziPoSifri();//pronadje traženi Artikal i ispiše ga
 	void traziPoNazivu();
 	void print();
-private:
 	std::vector<Artikal> niz;
+private:
+	
 
 	void ispisi_heder();//ispisuje formatirano CIJENA KOLICINA
 };

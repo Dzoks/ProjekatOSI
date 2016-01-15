@@ -1,4 +1,4 @@
-12344 Jabuke nema_opis 11 12.5
-1234 Banane nema_opis 31 51
+12344 Jabuke nema_opis 11 11.5
+1234 Banane nema_opis 31 40
 988 Meso krmece 32 9
 -1

@@ -12,6 +12,10 @@ public:
 	void izmjenaArtikla(Niz&);
 	void prodajArtikal(Niz&);
 	void statistikaDan();
+	void statistikaSedmicaJedan(int, Niz&, int);
+	void statistikaDanJedan(int,Niz&,int);
+	void statistikaMjesecJedan(int, Niz&, int);
+	void statistikaGodinaJedan(int, Niz&, int);
 	void statistikaSedmica();
 	void statistikaMjesec();
 	void statistikaGodina();
