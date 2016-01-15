@@ -136,7 +136,8 @@ int main()
 				char ce;
 				do
 				{
-					cout << "Po nazivu [1], Po sifri [2] , Kraj[0]: ";
+					cout << "~~~~~~ P R E T R A G A ~~~~~~" << endl;
+					cout << " Po nazivu [1] \n Po sifri [2] \n Kraj[0]: ";
 					cin >> ce;
 					if (ce == '1')
 					{

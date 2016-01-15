@@ -24,5 +24,6 @@ private:
 	
 
 	void ispisi_heder();//ispisuje formatirano CIJENA KOLICINA
+	void ispisi_footer();
 };
 

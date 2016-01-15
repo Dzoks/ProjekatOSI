@@ -1,7 +1,5 @@
 #include "Niz.h"
 
-
-
 Niz::Niz()
 {}
 
@@ -58,7 +56,7 @@ bool Niz::brisiArtikal()
 {
 	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	std::cout <<"~~~~~~~~~~~~~~~~~~BRISANJE   ARTIKLA~~~~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout  << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	int sifra;
 	do
 	{
@@ -73,8 +71,13 @@ bool Niz::brisiArtikal()
 			niz.erase(niz.begin() + i, niz.begin() + i + 1);
 			break;
 		}
-	if (a.sifra==sifra)
+	if (a.sifra == sifra)
+	{
 		std::cout << "ARTIKAL USPJESNO OBRISAN!" << std::endl;
+		ispisi_heder();
+		std::cout << a;
+		ispisi_footer();
+	}
 	else 
 		std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 	return true;
@@ -82,10 +85,12 @@ bool Niz::brisiArtikal()
 
 void Niz::traziPoSifri()
 {
+	std::cout << "~~~~~~~~~~ P R E T R A G A ~~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~~ P O   S I F R I ~~~~~~~~" << std::endl;
 	int sifra;
 	do
 	{
-		std::cout << "Sifra: "; std::cin >> sifra;
+		std::cout << "\tSifra: "; std::cin >> sifra;
 	} while (sifra < 1 || sifra >999999);
 	Artikal a;
 	for (int i = 0; i < niz.size(); i++)
@@ -99,7 +104,7 @@ void Niz::traziPoSifri()
 		std::cout << "ARTIKAL JE PRONADJEN: " << std::endl;
 		ispisi_heder();
 		std::cout << a;
-		std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		ispisi_footer();
 	}
 	else
 	{
@@ -109,6 +114,8 @@ void Niz::traziPoSifri()
 
 void Niz::traziPoNazivu()
 {
+	std::cout << "~~~~~~~~~~ P R E T R A G A ~~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~ P O   N A Z I V U  ~~~~~~~" << std::endl;
 	std::string naziv;
 	do
 	{
@@ -126,7 +133,7 @@ void Niz::traziPoNazivu()
 		std::cout << "ARTIKAL JE PRONADJEN: " << std::endl;
 		ispisi_heder();
 		std::cout << a;
-		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		ispisi_footer();
 	}
 	else std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 }
@@ -136,13 +143,18 @@ void Niz::print()
 	ispisi_heder();
 	for (int i = 0; i < niz.size(); i++)
 		std::cout << niz[i];
-	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	ispisi_footer();
 }
 
 void Niz::ispisi_heder()
 {
 	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	std::cout << "~SIFRA~ ~~~~~NAZIV~~~~~ ~~~~~OPIS~~~~~~ ~KOLICINA~ ~CIJENA~" << std::endl;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+}
+
+void Niz::ispisi_footer()
+{
 	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 }
 
