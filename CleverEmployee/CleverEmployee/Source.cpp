@@ -136,7 +136,7 @@ int main()
 				char ce;
 				do
 				{
-					cout << "Po nazivu [1], Po sifri [2]: ";
+					cout << "Po nazivu [1], Po sifri [2] , Kraj[0]: ";
 					cin >> ce;
 					if (ce == '1')
 					{
@@ -154,7 +154,7 @@ int main()
 						cin.get();
 						system("cls");
 					}
-				} while (ce != '1' || ce != '2');
+				} while (ce == '1' || ce == '2');
 				system("cls");
 			} 
 			else if (c == '5')

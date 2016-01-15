@@ -49,7 +49,7 @@ bool Niz::dodajArtikal()
 			flag = false;
 		}
 		else
-			std::cout << "To je postojeca sifra!" << std::endl;
+			std::cout << "UNESENA SIFRA VEC POSTOJI , PROBAJTE PONOVO!" << std::endl;
 	} while (flag);
 	return !flag;
 }
@@ -99,6 +99,7 @@ void Niz::traziPoSifri()
 		std::cout << "ARTIKAL JE PRONADJEN: " << std::endl;
 		ispisi_heder();
 		std::cout << a;
+		std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	}
 	else
 	{
@@ -125,6 +126,7 @@ void Niz::traziPoNazivu()
 		std::cout << "ARTIKAL JE PRONADJEN: " << std::endl;
 		ispisi_heder();
 		std::cout << a;
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	}
 	else std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 }
@@ -134,7 +136,7 @@ void Niz::print()
 	ispisi_heder();
 	for (int i = 0; i < niz.size(); i++)
 		std::cout << niz[i];
-	std::cout << std::endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 }
 
 void Niz::ispisi_heder()

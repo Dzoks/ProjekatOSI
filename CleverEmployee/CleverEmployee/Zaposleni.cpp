@@ -44,15 +44,23 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 {
 	char c;
 	int sifra,i;
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << "~~~~~~~~~~~~~~~~~~~IZMJENA    ARTIKLA~~~~~~~~~~~~";
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << "~~~~~~~~~~~~~~~~IZMJENA    ARTIKLA~~~~~~~~~~~~~~~";
+	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	std::cout << "UNESITE SIFRU ARTIKLA: ";
 	do
 	{
-		std::cout << "Sifra: "; std::cin >> sifra;
+		std::cout << "\nSifra: "; std::cin >> sifra;
 	} while (sifra < 1 || sifra >999999);
-
+	//Pretraga da li postoji artikal sa tom sifrom
+	for (i = 0; i < other.niz.size(); i++)
+		if (other.niz[i].getSifra() == sifra)
+			break;
+	if (i == other.niz.size())
+	{
+		std::cout << "UNESENA SIFRA NE POSTOJI!" << std::endl;
+			return;
+	}
 	Artikal a;
 	for (i = 0; i < other.niz.size(); i++)
 		if (other.niz[i].getSifra() == sifra)
@@ -66,7 +74,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		std::string ime;
 		do
 		{
-			std::cout << "\t\TUNESITE IME: "; std::cin >> ime;
+			std::cout << "\t\tUNESITE IME: "; std::cin >> ime;
 		} while (ime.length() < 3);
 		other.niz[i].setNaziv(ime);
 		break;
@@ -76,7 +84,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		double kol;
 		do
 		{
-			std::cout << "\tKOLICINA: "; std::cin >> kol;
+			std::cout << "\t\tKOLICINA: "; std::cin >> kol;
 		} while (kol < 0.01);
 		other.niz[i].setKolicina(kol);
 		break;
@@ -94,13 +102,13 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		double cijena;
 		do
 		{
-			std::cout << "\tCijena: "; std::cin >>cijena;
+			std::cout << "\t\tCijena: "; std::cin >>cijena;
 		} while (cijena < 0.01);
 		other.niz[i].setCijena(cijena);
 		break;
 	}
 	default:
-		std::cout << "Pogresan unos";
+		std::cout << "Unijeli ste pogresnu komandu";
 	}
 }
 
@@ -185,25 +193,28 @@ void Zaposleni::prodajArtikal(Niz& niz)
 	vreme.s = now->tm_sec;
 	vreme.m = now->tm_min;
 	vreme.h = now->tm_hour;
-	std::cout << "========================================================" << std::endl;
-	std::cout << "                           RACUN                        " << std::endl;
-	std::cout << "========================================================" << std::endl;
-	std::cout << "Naziv          Sifra         Kolicina             Cijena" << std::endl;
-	std::cout << "========================================================" << std::endl;
+	std::cout << "==================================================" << std::endl;
+	std::cout << "                     RACUN                        " << std::endl;
+	std::cout << "==================================================" << std::endl;
+	std::cout << "||Naziv           Sifra     Kolicina     Cijena  ||" << std::endl;
+	std::cout << "==================================================" << std::endl;
 	for (i = 0; i < racun.size(); ++i)
 	{
-		std::cout << racun[i].getNaziv() << " " << racun[i].getSifra() << " " << racun[i].getKolicina() << " " << racun[i].getKolicina()* racun[i].getCijena() << std::endl;
+		//formatiran ispis racuna 
+		std::cout << std::setw(15) << std::left << racun[i].getNaziv() << " " << std::setw(7) << racun[i].getSifra() <<"     "
+			<< std::setw(10) << std::left << racun[i].getKolicina() << "     " << std::setw(10) << std::left << racun[i].getKolicina()* racun[i].getCijena() << std::endl;
+		//kraj formatirano ispisa
 		suma += racun[i].getCijena()*racun[i].getKolicina();
 		vreme.sifra = racun[i].getSifra();
 		vreme.kolicina = racun[i].getKolicina();
 		vreme.cena = racun[i].getCijena()*racun[i].getKolicina();
 		stats.push_back(vreme);
 	}
-	std::cout << "========================================================" << std::endl;
-	std::cout << "UKUPNO:                                  " << suma << std::endl;
-	std::cout << "========================================================" << std::endl;
-	std::cout << "KUPAC:                                        " << kupac << std::endl;
-	std::cout << "========================================================" << std::endl;
+	std::cout << "==================================================" << std::endl;
+	std::cout << "UKUPNO:" << std::setw(43) << std::right << suma << std::endl;
+	std::cout << "==================================================" << std::endl;
+	std::cout << "KUPAC:" << std::setw(44) << std::right << kupac << std::endl;
+	std::cout << "==================================================" << std::endl;
 	if (brojElemenata == kap)
 	{
 		std::string* novi = new std::string[kap *= 2];
