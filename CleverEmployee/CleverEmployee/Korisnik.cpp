@@ -72,6 +72,13 @@ void Korisnik::prijavaNaSistem()
 			std::cin >> ime;
 			std::cout << "UNESITE VASU LOZINKU: ";
 			std::cin >> loz;
+			if (ime == "gost"&&loz == "gost")
+			{
+				this->kor_ime = "Gost";
+				this->lozinka = "Gost";
+				this->status = "G";
+				return;
+			}
 			nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
 			if (nadjeni == niz + brojElemenata) {
 				nadjeni = nullptr;

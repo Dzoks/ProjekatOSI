@@ -79,6 +79,21 @@ int main()
 		
 		
 	}
+	else if (pom.getStatus() == "G")
+	{
+		system("cls");
+		char c;
+		Niz artikli;
+		artikli.ucitajDatoteku();
+		Zaposleni z(pom.getIme(), pom.getLozinka(), pom.getStatus());
+		std::cout << "Dobrodosli, " << z.getIme() << "! Odaberite neku od postojecih opcija da nastavite sa radom: " << std::endl;
+		do {
+			std::cout << "Ispis [1], Pretraga [2], Kraj [0]: ";
+			std::cin >> c;
+			if (c == '1') artikli.print();
+			else if (c == '2') artikli.traziPoNazivu();
+		} while (c != '0');
+	}
 	else 
 	{
 		system("cls");
