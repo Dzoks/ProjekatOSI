@@ -106,6 +106,5 @@ std::istream & operator>>(std::istream &in, Artikal &a)
 	{
 		std::cout << "\tCijena: "; in >> a.cijena;
 	} while (a.cijena < 0.01);//cijena je manja od 0.01 jer neki proizvod moze imati cijenu 0.5,a cijena ipak mora biti veca od nule
-
 	return in;
 }

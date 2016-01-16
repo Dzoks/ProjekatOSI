@@ -49,7 +49,7 @@ void Administrator::kreirajNalog()
 		} while (loz.length() < 6);
 		do
 		{
-			std::cout << "ADMINISTRATOR [A}, ZAPOSLENI [Z] ? ";
+			std::cout << "ADMINISTRATOR [A], ZAPOSLENI [Z] ? ";
 			std::cin >> status;
 		} while (status != "A"&&status != "Z");
 		if (brojElemenata == kap)
@@ -145,7 +145,7 @@ void Administrator::izmjenaNaloga()
 	if (c11 == '3') {
 		do
 		{
-			std::cout << "ADMINISTRATOR [A}, ZAPOSLENI [Z] ? ";
+			std::cout << "ADMINISTRATOR [A], ZAPOSLENI [Z] ? ";
 			std::cin >> status;
 			
 		} while (status != "A"&&status != "Z");
@@ -289,7 +289,7 @@ void Administrator::podesavanjeBoje()
 	do {
 
 		std::cout << "ZA PROMJENU BOJE ODABERITE JEDNU OD SLEDECE TRI OPCIJE:" << std::endl;
-		std::cout << "CRNA[1], PLAVA [2], BIJELA [3]: " << std::endl;
+		std::cout << "CRNA[1], PLAVA [2], BIJELA [3]: " ;
 		std::cin >> c;
 		if (c == '1')
 			dat << "color 07" << std::endl;
@@ -344,16 +344,16 @@ void Administrator::ukupanBrojNaloga()
 		std::cin >> cha;
 		if (cha == '1')
 		{
-			std::cout << "================================================================================" << std::endl;
+			std::cout << "========================================================================================" << std::endl;
 			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
-			std::cout << "================================================================================" << std::endl;
+			std::cout << "========================================================================================" << std::endl;
 		}
 		else if (cha == '2')
 		{
 			std::fstream out("BrojNaloga.txt", std::ios::out);
-			out << "==============================================" << std::endl;
+			out << "========================================================================================" << std::endl;
 			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
-			out << "==============================================" << std::endl;
+			out << "========================================================================================" << std::endl;
 			std::cout << "================================================================================================================" << std::endl;
 			std::cout << "||INFORMACIJA KOJU STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt, pritisnite bilo koji taster da nastavite.||" << std::endl;
 			std::cout << "================================================================================================================" << std::endl;

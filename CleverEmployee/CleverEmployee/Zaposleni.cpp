@@ -65,11 +65,11 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 	for (i = 0; i < other.niz.size(); i++)
 		if (other.niz[i].getSifra() == sifra)
 			break;
-	std::cout << "STA SE MJENJA? \n\tIME  [I]: \n\tKOLICINA  [K]: \n\tOPIS   [O]: \n\tCIJENA  [C]: " << std::endl;
+	std::cout << "STA SE MJENJA? \nIME [1], KOLICINA [2], OPIS [3], CIJENA [4]: " ;
 	std::cin >> c;
 	switch (c)
 	{
-	case('I') :
+	case('1') :
 	{	
 		std::string ime;
 		do
@@ -79,7 +79,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		other.niz[i].setNaziv(ime);
 		break;
 	}
-	case('K') :
+	case('2') :
 	{
 		double kol;
 		do
@@ -89,7 +89,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		other.niz[i].setKolicina(kol);
 		break;
 	}
-	case('O') :
+	case('3') :
 	{
 		std::string opis;
 		std::cout << "\t\tOPIS:";
@@ -97,7 +97,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		other.niz[i].setOpis(opis);
 		break;
 	}
-	case('C') :
+	case('4') :
 	{
 		double cijena;
 		do
@@ -108,8 +108,11 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		break;
 	}
 	default:
-		std::cout << "Unijeli ste pogresnu komandu";
+		std::cout << "Unijeli ste pogresnu komandu"<<std::endl;
 	}
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::prodajArtikal(Niz& niz)
@@ -235,6 +238,9 @@ void Zaposleni::prodajArtikal(Niz& niz)
 		stat << stats[i].day <<" "<< stats[i].month << " " << stats[i].year << " " << stats[i].h << " " << stats[i].m << " " << stats[i].s << " " << stats[i].sifra << " " << stats[i].kolicina << " " << stats[i].cena<<std::endl;
 	stat << -1;
 	stat.close();
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::statistikaDan()
@@ -267,7 +273,9 @@ void Zaposleni::statistikaDan()
 		std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 		std::cout << "Dnevni prihod: " << ukupnaCena << std::endl;
 		std::cout << "===============================================================================================" << std::endl;
-
+		std::cout << "=============================================" << std::endl;
+		std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+		std::cout << "=============================================" << std::endl;
 	
 }
 
@@ -305,6 +313,9 @@ void Zaposleni::statistikaSedmicaJedan(int sifra, Niz & niz, int i)
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Sedmicni prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 
 }
 
@@ -339,7 +350,9 @@ void Zaposleni::statistikaDanJedan(int sifra,Niz& niz,int i)
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Dnevni prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
-
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::statistikaMjesecJedan(int sifra, Niz &niz, int i)
@@ -373,7 +386,9 @@ void Zaposleni::statistikaMjesecJedan(int sifra, Niz &niz, int i)
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Mesecni prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
-
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::statistikaGodinaJedan(int sifra, Niz &niz, int i)
@@ -407,6 +422,9 @@ void Zaposleni::statistikaGodinaJedan(int sifra, Niz &niz, int i)
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Godisnji prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::statistikaSedmica()
@@ -442,7 +460,9 @@ void Zaposleni::statistikaSedmica()
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Sedmicni prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
-
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 
 }
 
@@ -476,7 +496,9 @@ void Zaposleni::statistikaMjesec()
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Mesecni prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
-
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 void Zaposleni::statistikaGodina()
@@ -509,6 +531,9 @@ void Zaposleni::statistikaGodina()
 	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
 	std::cout << "Godisnji prihod: " << ukupnaCena << std::endl;
 	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 }
 
 
@@ -541,5 +566,8 @@ void Zaposleni::statistikaKupci()
 	std::cout << "=============" << std::endl;
 	for (int i = 0; i < brojElemenata; i++)
 		std::cout << kupci[i] << std::endl;
+	std::cout << "=============================================" << std::endl;
+	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "=============================================" << std::endl;
 
 }

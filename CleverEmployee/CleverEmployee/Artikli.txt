@@ -1,5 +1,6 @@
-12344 Jabuke nema_opis 11 9.1
-1234 Banane domace 31 19
-988 Meso krmece 32 25
-147 Marmelada nema_opis 4 3
+12344 Jabuke nema_opis 11 7.9
+1234 Banane domace 31 16
+988 Meso krmece 32 23
+147 Marmelada nema_opis 4 2
+1 Sijalica 100W 1.5 8
 -1
