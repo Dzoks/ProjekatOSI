@@ -1,5 +1,5 @@
 12344 Jabuke nema_opis 11 7.9
-1234 Banane domace 31 16
+1234 Banane domace 31 4
 988 Meso krmece 32 23
 147 Marmelada nema_opis 4 2
 1 Sijalica 100W 1.5 8

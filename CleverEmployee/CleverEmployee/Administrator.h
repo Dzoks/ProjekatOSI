@@ -14,7 +14,6 @@ public:
 	void izmjenaNaloga();
 	void pisiSve();
 	void brisiNalog();
-	void podesavanjeJezika();//najmanji prioritet
 	void podesavanjeBoje();
 	void brojIzmjena();
 	void ukupanBrojNaloga();

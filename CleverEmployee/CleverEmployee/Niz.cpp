@@ -11,14 +11,17 @@ void Niz::ucitajDatoteku()
 {
 	Artikal a;
 	ifstream dat("Artikli.txt");
-	while (!dat.eof())
+	if (dat)
 	{
-		dat >> a.sifra >> a.naziv >> a.opis >> a.cijena >> a.kolicina;
-		if (a.getSifra() == -1)
-			break;
-		niz.push_back(a);
+		while (!dat.eof())
+		{
+			dat >> a.sifra >> a.naziv >> a.opis >> a.cijena >> a.kolicina;
+			if (a.getSifra() == -1)
+				break;
+			niz.push_back(a);
+		}
+		dat.close();
 	}
-	dat.close();
 }
 
 void Niz::pisiDatoteku()
