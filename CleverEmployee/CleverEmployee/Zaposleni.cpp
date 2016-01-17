@@ -44,9 +44,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 {
 	char c;
 	int sifra,i;
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << "~~~~~~~~~~~~~~~~IZMJENA    ARTIKLA~~~~~~~~~~~~~~~";
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << std::endl << "~~~~~~~~~~~~~~~~IZMJENA    ARTIKLA~~~~~~~~~~~~~~~" << std::endl;
 	std::cout << "UNESITE SIFRU ARTIKLA: ";
 	do
 	{
@@ -135,6 +133,7 @@ void Zaposleni::prodajArtikal(Niz& niz)
 	double kolicina,suma=0;
 	niz.print();
 	std::string kupac;
+	cout << "~~~~~~ PRAVLJENJE RACUNA ~~~~~~" << endl;
 	std::cout << "Unesite ime kupca: ";
 	std::cin >> kupac;
 	int kap = 5;

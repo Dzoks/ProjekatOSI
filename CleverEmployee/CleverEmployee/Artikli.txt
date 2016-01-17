@@ -1,6 +1,8 @@
-12344 Jabuke nema_opis 11 7.9
-1234 Banane domace 31 4
-988 Meso krmece 32 23
+12344 Jabuke nema_opis 11 6.8
+988 Meso krmece 32 21.5
 147 Marmelada nema_opis 4 2
-1 Sijalica 100W 1.5 8
+1 Sijalica 100W 1.5 7
+1122 Hljeb razeni 1.4 13
+2233 Jogobela visnja 3.2 7
+911 Sat polovan 19.99 3
 -1

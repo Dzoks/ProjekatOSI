@@ -41,7 +41,7 @@ int main()
 				char c1;
 				do
 				{
-					cout << "Odaberite zeljenu opciju: " << endl << "Kreiranje novog naloga [1], Izmjena postojeceg naloga [2] , Brisanje naloga [3], Lista svih naloga [4], Kraj [0]: ";
+					cout << "Odaberite zeljenu opciju: " << endl << "Kreiranje novog naloga [1], Izmjena postojeceg naloga [2], " << endl << "Brisanje naloga [3], Lista svih naloga [4], Kraj [0]: ";
 					cin >> c1;
 					if (c1 == '1') admin.kreirajNalog();
 					else if (c1== '2') admin.izmjenaNaloga();
@@ -104,11 +104,12 @@ int main()
 		char c;
 		do
 		{
-			cout << "Dodavanje [1], Brisanje [2], Izmjena [3], Pretraga [4], Ispis [5], Prodaja[6], Statistika [7], Kraj [0]: ";
+			cout << "Dodavanje [1], Brisanje [2], Izmjena [3], Pretraga [4]," << endl << "Ispis [5], Prodaja[6], Statistika [7], Kraj [0]: ";
 			cin >> c;
 			if (c == '1')
 			{
 				system("cls");
+				cout << "~~~~~~ D O D A V A N J E ~~~~~~" << endl;
 				artikli.dodajArtikal();
 				cin.get();
 				cin.get();
@@ -161,6 +162,7 @@ int main()
 			else if (c == '5')
 			{
 				system("cls");
+				cout << "~~~~~~ UKUPNO STANJE ROBE ~~~~~~" << endl;
 				artikli.print();
 				std::cout << "=============================================" << std::endl;
 				std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
@@ -180,6 +182,7 @@ int main()
 			else if (c == '7')
 			{
 				system("cls");
+				cout << "~~~~~~ S T A T I S T I K A ~~~~~~" << endl;
 				char c2;
 				do
 				{
@@ -191,7 +194,7 @@ int main()
 					system("cls");
 					char c1;
 					do {
-						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3],Godisnja statistika [4], Lista kupaca [5], Kraj [0]: ";
+						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3], " << endl << "Godisnja statistika [4], Lista kupaca [5], Kraj [0]: ";
 						std::cin >> c1;
 						if (c1 == '5')
 						{
@@ -253,7 +256,7 @@ int main()
 					} while (artikli.niz.size() == i);
 					char c1;
 					do {
-						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3],Godisnja statistika [4],  Kraj [0]: ";
+						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], " << endl << "Mesecna statistika [3],Godisnja statistika [4],  Kraj [0]: ";
 						std::cin >> c1;
 						if (c1 == '1')
 						{
