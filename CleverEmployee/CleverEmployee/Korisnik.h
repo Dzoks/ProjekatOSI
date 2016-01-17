@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <conio.h>
 class Korisnik
 {
 public:

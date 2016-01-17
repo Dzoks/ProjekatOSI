@@ -179,10 +179,6 @@ void Zaposleni::prodajArtikal(Niz& niz)
 		niz.niz[i].setKolicina(niz.niz[i].getKolicina() - kolicina);
 		racun.push_back(niz.niz[i]);
 		racun.at(racun.size() -1).setKolicina(kolicina);
-		std::vector<Artikal>::iterator it = niz.niz.begin();
-		it += i;
-		if (niz.niz.at(i).getKolicina() == 0)
-			niz.niz.erase(it);
 		std::cout << "Hocete li jos robe prodavati?" << std::endl;
 		std::cout << "DA [1], NE[2]: ";
 		std::cin >> pom;

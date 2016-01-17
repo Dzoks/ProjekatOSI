@@ -66,12 +66,19 @@ void Korisnik::prijavaNaSistem()
 		}
 		dat.close();
 		Korisnik* nadjeni = nullptr;
+		char ch;
 		do
 		{
+			loz = "";
 			std::cout << "UNESITE VASE KORISNICKO IME:";
 			std::cin >> ime;
 			std::cout << "UNESITE VASU LOZINKU: ";
-			std::cin >> loz;
+			ch = _getch();
+			while (ch != 13) {		//character 13 is enter
+				loz.push_back(ch);
+				std::cout << '*';
+				ch = _getch();
+			}
 			if (ime == "gost"&&loz == "gost")
 			{
 				this->kor_ime = "Gost";
