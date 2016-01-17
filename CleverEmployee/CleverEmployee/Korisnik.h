@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 class Korisnik
 {
 public:

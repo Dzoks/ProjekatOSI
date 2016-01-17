@@ -37,6 +37,11 @@ void Administrator::kreirajNalog()
 			}
 			dat.close();
 		}
+		std::cout << std::endl;
+		std::cout << "=====================================" << std::endl;
+		std::cout << "||      KREIRANJE NOVOG NALOGA     ||" << std::endl;
+		std::cout << "=====================================" << std::endl;
+		std::cout << std::endl;
 		do
 		{
 			std::cout << "UNESITE ZELJENO KORISNICKO IME: ";
@@ -46,6 +51,7 @@ void Administrator::kreirajNalog()
 		{
 			std::cout << "UNESITE LOZINKU: ";
 			std::cin >> loz;
+			if (loz.length() < 6) std::cout << std::endl<< "LOZINKA IMA MANJE OD 6 KARAKTERA," << std::endl << "MOLIMO POKUSAJTE PONOVO." << std::endl << std::endl;
 		} while (loz.length() < 6);
 		do
 		{
@@ -78,7 +84,7 @@ void Administrator::kreirajNalog()
 		iz << izmene;
 		iz.close();
 		delete[] niz;
-		std::cout << "===================================================================" << std::endl;
+		std::cout << std::endl<< "===================================================================" << std::endl;
 		std::cout << "||NALOG USPJESNO DODAN, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
 		std::cout << "===================================================================" << std::endl;
 		std::cin.get();
@@ -115,14 +121,28 @@ void Administrator::izmjenaNaloga()
 		}
 		dat.close();
 	}
+	std::cout << std::endl;
+	std::cout << "===========================================" << std::endl;
+	std::cout << "||       IZMJENA KORISNICKOG NALOGA      ||" << std::endl;
+	std::cout << "===========================================" << std::endl;
+	std::cout << std::endl;
 	Korisnik* nadjeni = nullptr;
-	do
-	{
+
 		std::cout << "UNESITE IME ZA PRETRAGU: ";
 		std::cin >> ime;
 		nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
-		if (nadjeni == niz + brojElemenata) nadjeni = nullptr;
-	} while (!nadjeni);
+		if (nadjeni == niz + brojElemenata) {
+			std::cout << std::endl;
+			std::cout << "======================================================" << std::endl;
+			std::cout << "||NIJE PRONADJENO IME, PRITISNITE ENTER DA NASTAVITE||" << std::endl;
+			std::cout << "======================================================" << std::endl;
+			std::cin.get();
+			std::cin.get();
+				return;
+
+
+
+		}
 	std::cout << "STA ZELITE DA MIJENJATE?" << std::endl << "KORISICNICKO IME [1], LOZINKU [2], STATUS KORISNIKA [3]: ";
 	char c11;
 	std::cin >> c11;
@@ -182,6 +202,7 @@ void Administrator::pisiSve()
 	Korisnik* niz = new Korisnik[kap];
 	std::string ime, loz, status;
 	std::fstream dat("Korisnici.txt", std::fstream::in);
+	std::cout << std::endl;
 	if (dat)
 	{
 		while (!dat.eof())
@@ -202,6 +223,10 @@ void Administrator::pisiSve()
 		}
 		dat.close();
 	}
+	std::cout << std::endl;
+	std::cout << "===================================================" << std::endl;
+	std::cout << "||              LISTA SVIH NALOGA                ||" << std::endl;
+	std::cout << "===================================================" << std::endl << std::endl;
 	std::cout << "||===============================================||" << std::endl;
 	std::cout<<"||"<<std::setw(20)<<std::setfill(' ')<<"KORISNICKO IME"<< std::setw(20)<<" LOZINKA"<<std::setw(6)<<" STATUS" << "||"<<std::endl;
 	std::cout << "||===============================================||" << std::endl;
@@ -209,6 +234,7 @@ void Administrator::pisiSve()
 	std::cout << "||"<<std::setw(20)<<std::setfill(' ') << niz[i].getIme() << std::setw(20) << niz[i].getLozinka() << std::setw(7) << niz[i].getStatus() << "||"<<std::endl;
 	std::cout << "||===============================================||" << std::endl;
 	delete[] niz;
+	std::cout << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -246,13 +272,25 @@ void Administrator::brisiNalog()
 		dat.close();
 	}
 	Korisnik* nadjeni = nullptr;
-	do
-	{
+	std::cout << std::endl;
+	std::cout << "===================================================" << std::endl;
+	std::cout << "||         BRISANJE KORISNICKOG NALOGA           ||" << std::endl;
+	std::cout << "===================================================" << std::endl << std::endl;
+
 		std::cout << "UNESITE IME ZA PRETRAGU: ";
 		std::cin >> ime;
 		nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
-		if (nadjeni == niz + brojElemenata) nadjeni = nullptr;
-	} while (!nadjeni||nadjeni->getIme()==this->getIme());
+		if (nadjeni == niz + brojElemenata||(nadjeni->getIme()==this->getIme())) {
+			std::cout << std::endl;
+			std::cout << "======================================================" << std::endl;
+			std::cout << "||NIJE PRONADJENO IME, PRITISNITE ENTER DA NASTAVITE||" << std::endl;
+			std::cout << "======================================================" << std::endl;
+			std::cin.get();
+			std::cin.get();
+			return;
+
+
+		}
 	dat.open("Korisnici.txt", std::fstream::out);
 	std::for_each(niz,nadjeni,[&dat](Korisnik& a)
 	{
@@ -286,6 +324,10 @@ void Administrator::podesavanjeBoje()
 	system("cls");
 	std::fstream dat("Kontrola.txt",std::ios::out);
 	char c;
+	std::cout << std::endl;
+	std::cout << "===================================================" << std::endl;
+	std::cout << "||              PODESAVANJE BOJE                 ||" << std::endl;
+	std::cout << "===================================================" << std::endl << std::endl;
 	do {
 
 		std::cout << "ZA PROMJENU BOJE ODABERITE JEDNU OD SLEDECE TRI OPCIJE:" << std::endl;
@@ -338,6 +380,10 @@ void Administrator::ukupanBrojNaloga()
 	}	
 	char cha;
 	br--;
+	std::cout << std::endl;
+	std::cout << "===================================================" << std::endl;
+	std::cout << "||               BROJ SVIH NALOGA                ||" << std::endl;
+	std::cout << "===================================================" << std::endl << std::endl;
 	do
 	{
 		std::cout << "ISPIS NA KONZOLU[1], TEKSTUALNI FAJL[2]: ";
@@ -371,6 +417,10 @@ void Administrator::ukupanBrojNaloga()
 void Administrator::dodajObavjestenje()
 {
 	std::string poruka;
+	std::cout << std::endl;
+	std::cout << "===================================================" << std::endl;
+	std::cout << "||          DODAVANJE OBAVJESTENJA               ||" << std::endl;
+	std::cout << "===================================================" << std::endl << std::endl;
 	std::cout << "UNESITE OBAVJESTENJE KOJE ZELITE:" << std::endl;//unos obavjestenja
 	std::cin.get();
 	getline(std::cin, poruka);

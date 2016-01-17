@@ -44,8 +44,21 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 {
 	char c;
 	int sifra,i;
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~IZMJENA    ARTIKLA~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << "UNESITE SIFRU ARTIKLA: ";
+	//if (other.niz.size() == 0)
+	std::cout << std::endl;
+	std::cout << "================================================="<<std::endl;
+	std::cout << "||             IZMJENA    ARTIKLA              ||" << std::endl;
+	std::cout << "=================================================" << std::endl;
+	if (other.niz.size() == 0)
+	{
+		std::cout << std::endl;
+		std::cout << "====================================================="<<std::endl;
+		std::cout << "||NE POSTOJI NIJEDAN ARTIKAL, PRETRAGA NIJE MOGUCA.||" << std::endl;
+		std::cout << "||    PRITISNITE BILO KOJI TASTER DA NASTAVITE.    ||" << std::endl;
+		std::cout << "====================================================="<<std::endl;
+		return;
+	}
+	std::cout << std::endl<< "UNESITE SIFRU ARTIKLA: ";
 	do
 	{
 		std::cout << "\nSifra: "; std::cin >> sifra;
@@ -63,7 +76,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 	for (i = 0; i < other.niz.size(); i++)
 		if (other.niz[i].getSifra() == sifra)
 			break;
-	std::cout << "STA SE MJENJA? \nIME [1], KOLICINA [2], OPIS [3], CIJENA [4]: " ;
+	std::cout << "STA SE MIJENJA? \nIME [1], KOLICINA [2], OPIS [3], CIJENA [4]: " ;
 	std::cin >> c;
 	switch (c)
 	{
@@ -115,6 +128,19 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 
 void Zaposleni::prodajArtikal(Niz& niz)
 {
+	std::cout << std::endl;
+	std::cout << "============================" << std::endl;
+	std::cout << "||   PRAVLJENJE RACUNA    ||" << std::endl;
+	std::cout << "============================" << std::endl;
+	if (niz.niz.size() == 0)
+	{
+		std::cout << std::endl;
+		std::cout << "===================================================="<<std::endl;
+		std::cout << "||NE POSTOJI NIJEDAN ARTIKAL, PRODAJA NIJE MOGUCA.||" << std::endl;
+		std::cout << "||   PRITISNITE BILO KOJI TASTER DA NASTAVITE.    ||" << std::endl;
+		std::cout << "===================================================="<<std::endl;
+		return;
+	}
 	std::vector<Artikal> racun;
 	std::vector<statistika> stats;
 	std::fstream stat("Statistika.txt", std::fstream::in);
@@ -129,11 +155,11 @@ void Zaposleni::prodajArtikal(Niz& niz)
 		}
 		stat.close();
 	}
-	int sifra, i,pom;
+	int sifra, i;
+	char pom;
 	double kolicina,suma=0;
 	niz.print();
 	std::string kupac;
-	cout << "~~~~~~ PRAVLJENJE RACUNA ~~~~~~" << endl;
 	std::cout << "Unesite ime kupca: ";
 	std::cin >> kupac;
 	int kap = 5;
@@ -179,9 +205,9 @@ void Zaposleni::prodajArtikal(Niz& niz)
 		racun.push_back(niz.niz[i]);
 		racun.at(racun.size() -1).setKolicina(kolicina);
 		std::cout << "Hocete li jos robe prodavati?" << std::endl;
-		std::cout << "DA [1], NE[2]: ";
+		std::cout << "NE[1]: ";
 		std::cin >> pom;
-	} while (pom != 2);
+	} while (pom != '1');
 	statistika vreme;
 	time_t t = time(0);
 	struct tm * now = localtime(&t);
@@ -263,6 +289,7 @@ void Zaposleni::statistikaDan()
 		}
 		dat.close();
 	}
+
 		std::cout << "Dnevna statistika prodaje za " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
 		std::cout << "===============================================================================================" << std::endl;
 		std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
@@ -557,10 +584,13 @@ void Zaposleni::statistikaKupci()
 		}
 		dat.close();
 	}
-	std::cout << "LISTA KUPACA" << std::endl;
-	std::cout << "=============" << std::endl;
+	std::cout << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "||LISTA KUPACA||" << std::endl;
+	std::cout << "================" << std::endl;
 	for (int i = 0; i < brojElemenata; i++)
 		std::cout << kupci[i] << std::endl;
+	std::cout << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
 	std::cout << "=============================================" << std::endl;

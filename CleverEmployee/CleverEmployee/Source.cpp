@@ -5,6 +5,7 @@
 #include "Niz.h"
 #include "Zaposleni.h"
 #include <windows.h>
+
 using namespace std;
 int main()
 {
@@ -18,6 +19,11 @@ int main()
 		boja.close();
 		system(cpozadina);
 	}
+	cout << endl << endl;
+	cout << "===============================" << endl;
+	cout << "||     CLEVER EMPLOYEE       ||" << endl;
+	cout << "===============================" << endl;
+	cout << endl << endl;
 	fstream poruka("Poruka.txt", fstream::in);
 	if (poruka)
 	{
@@ -26,59 +32,87 @@ int main()
 		cout << "PORUKA ADMINISTRATORA:" << endl<< p << endl;//ispis poruke
 	}
 	Korisnik pom;
+	cout << endl << endl;
 	pom.prijavaNaSistem();
 	if (pom.getStatus() == "A")
 	{
 		system("cls");
 		char c;
 		Administrator admin(pom.getIme(), pom.getLozinka(), pom.getStatus());
-		std::cout << "Dobrodosli, " << admin.getIme() << "! Odaberite neku od postojecih opcija da nastavite sa radom: " << std::endl;
 		do {
-			std::cout << "Rad sa korisnickim nalozima [1], Statistika sistema [2], Ostale opcije [3], Kraj [0] : ";
+			system("cls");
+			cout << endl;
+			cout << "========================================" << endl;
+			cout << "||  ADMINISTRATORSKA KONTROLNA PLOCA  ||" << endl;
+			cout << "========================================" << endl;
+			cout << endl;
+			std::cout << "DOBRODOSLI, " << admin.getIme() << "! ODABERITE NEKU OD POSTOJECIH OPCIJA: " << std::endl << endl;
+			std::cout << "RAD SA KORISNICKIM NALOZIMA [1], STATISTIKA SISTEMA [2], OSTALE OPCIJE [3], Kraj [0] : ";
 			cin >> c;
 			if (c == '1')
 			{
 				char c1;
 				do
 				{
-					cout << "Odaberite zeljenu opciju: " << endl << "Kreiranje novog naloga [1], Izmjena postojeceg naloga [2], " << endl << "Brisanje naloga [3], Lista svih naloga [4], Kraj [0]: ";
+					system("cls");
+					cout << endl;
+					cout << "======================================" << endl;
+					cout << "||   RAD SA KORISNICKIM NALOZIMA    ||" << endl;
+					cout << "======================================" << endl;
+					cout << endl;
+					cout << "ODABERITE ZELJENU OPCIJU: " << endl << endl<<"KREIRANJE NOVOG NALOGA [1], IZMJENA POSTOJECEG NALOGA [2], " << endl << endl << "BRISANJE NALOGA [3], LISTA SVIH NALOGA [4], KRAJ [0]: ";
 					cin >> c1;
 					if (c1 == '1') admin.kreirajNalog();
-					else if (c1== '2') admin.izmjenaNaloga();
-					else if (c1== '3') admin.brisiNalog();
+					else if (c1 == '2') admin.izmjenaNaloga();
+					else if (c1 == '3') admin.brisiNalog();
 					else if (c1 == '4') admin.pisiSve();
 					system("cls");
 				} while (c1 != '0');
+				system("cls");
 			}
 			else if (c == '2')
 			{
+			
 				char c1;
 				do
 				{
-				cout << "Odaberite zeljenu opciju: " << endl << "Ukupan broj naloga [1], Ukupan broj izmjena [2], Kraj [0]: ";
-				cin >> c1;
-				if (c1 == '1') admin.ukupanBrojNaloga();
-				else if (c1 == '2') admin.brojIzmjena();
-				system("cls");
+					system("cls");
+					cout << endl;
+					cout << "=============================" << endl;
+					cout << "||   STATISTIKA SISTEMA    ||" << endl;
+					cout << "=============================" << endl;
+					cout << endl;
+					cout << "ODABERITE ZELJENU OPCIJU: " << endl << endl<<"UKUPAN BROJ NALOGA [1], UKUPAN BROJ IZMJENA [2], KRAJ [0]: ";
+					cin >> c1;
+					if (c1 == '1') admin.ukupanBrojNaloga();
+					else if (c1 == '2') admin.brojIzmjena();
+					system("cls");
 				} while (c1 != '0');
+				system("cls");
 			}
 			else if (c == '3')
 			{
 				char c1;
 				do
+
 				{
-				cout << "Odaberite zeljenu opciju: " << endl << "Podesavanje boje sistema [1], Dodavanje obavjestenja [2], Kraj [0]: ";
-				cin >> c1;
-				if (c1 == '1') admin.podesavanjeBoje();
-				else if (c1 == '2') admin.dodajObavjestenje();
+					system("cls");
+					cout << endl;
+					cout << "========================" << endl;
+					cout << "||   OSTALE OPCIJE    ||" << endl;
+					cout << "========================" << endl;
+					cout << endl;
+					cout << "ODABERITE OPCIJU: " << endl << "PODESAVANJE BOJE SISTEMA [1], DODAVANJE OBAVJESTENJA [2], KRAJ [0]: ";
+					cin >> c1;
+					if (c1 == '1') admin.podesavanjeBoje();
+					else if (c1 == '2') admin.dodajObavjestenje();
+					system("cls");
+				} while (c1 != '0');
 				system("cls");
-			} while (c1 != '0');
 			}
-			system("cls");
 		} while (c != '0');
-		
-		
 	}
+		
 	else if (pom.getStatus() == "G")
 	{
 		system("cls");
@@ -86,30 +120,44 @@ int main()
 		Niz artikli;
 		artikli.ucitajDatoteku();
 		Zaposleni z(pom.getIme(), pom.getLozinka(), pom.getStatus());
-		std::cout << "Dobrodosli, " << z.getIme() << "! Odaberite neku od postojecih opcija da nastavite sa radom: " << std::endl;
+		std::cout << "DOBRODOSLI, " << z.getIme() << "! ODABERITE OPCIJU: " << std::endl;
 		do {
-			std::cout << "Ispis [1], Pretraga [2], Kraj [0]: ";
+			std::cout << "ISPIS [1], PRETRAGA [2], KRAJ [0]: ";
 			std::cin >> c;
-			if (c == '1') artikli.print();
-			else if (c == '2') artikli.traziPoNazivu();
+			if (c == '1') {
+				 artikli.print();
+				 cin.get();
+				 cin.get();
+				 system("cls");
+			}
+			else if (c == '2') {
+				 artikli.traziPoNazivu();
+				 cin.get();
+				 cin.get();
+				 system("cls");
+			}
 		} while (c != '0');
 	}
 	else 
 	{
 		system("cls");
 		Zaposleni zaposlen(pom.getIme(), pom.getLozinka(), pom.getStatus());
-		cout << "Dobro dosli," << pom.getIme() << "! Odaberite neku od postojecih opcija da nastavite sa radom: " << endl;
+		cout << "DOBRO DOSLI, " << pom.getIme() << "! ODABERITE NEKU OD POSTOJECIH OPCIJA: " << endl;
 		Niz artikli;
 		artikli.ucitajDatoteku();
 		char c;
 		do
 		{
-			cout << "Dodavanje [1], Brisanje [2], Izmjena [3], Pretraga [4]," << endl << "Ispis [5], Prodaja[6], Statistika [7], Kraj [0]: ";
+			cout << endl;
+			cout << "===========================" << endl;
+			cout << "||   RAD SA ARTIKLIMA    ||" << endl;
+			cout << "===========================" << endl;
+			cout << endl;
+			cout << "DODAVANJE [1], BRISANJE [2], IZMJENA [3], PRETRAGA [4]," << endl << endl<<"ISPIS [5], PRODAJA[6], STATISTIKA [7], KRAJ [0]: ";
 			cin >> c;
 			if (c == '1')
 			{
 				system("cls");
-				cout << "~~~~~~ D O D A V A N J E ~~~~~~" << endl;
 				artikli.dodajArtikal();
 				cin.get();
 				cin.get();
@@ -137,7 +185,11 @@ int main()
 				char ce;
 				do
 				{
-					cout << "~~~~~~ P R E T R A G A ~~~~~~" << endl;
+					cout << endl;
+					cout << "=============================" << endl;
+					cout << "||        PRETRAGA         ||" << endl;
+					cout << "=============================" << endl;
+					cout << endl;
 					cout << " Po nazivu [1], Po sifri [2], Kraj[0]: ";
 					cin >> ce;
 					if (ce == '1')
@@ -162,7 +214,6 @@ int main()
 			else if (c == '5')
 			{
 				system("cls");
-				cout << "~~~~~~ UKUPNO STANJE ROBE ~~~~~~" << endl;
 				artikli.print();
 				std::cout << "=============================================" << std::endl;
 				std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
@@ -182,10 +233,14 @@ int main()
 			else if (c == '7')
 			{
 				system("cls");
-				cout << "~~~~~~ S T A T I S T I K A ~~~~~~" << endl;
 				char c2;
 				do
 				{
+					cout << endl;
+					cout << "=====================" << endl;
+					cout << "||   STATISTIKA    ||" << endl;
+					cout << "=====================" << endl;
+					cout << endl;
 					cout << "UKUPNA STATISTIKA [1], ZA ODREDJENI ARTIKAL [2]: ";
 					std::cin >> c2;
 				} while (c2 != '1' && c2 != '2');
@@ -194,7 +249,12 @@ int main()
 					system("cls");
 					char c1;
 					do {
-						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], Mesecna statistika [3], " << endl << "Godisnja statistika [4], Lista kupaca [5], Kraj [0]: ";
+						cout << endl;
+						cout << "============================" << endl;
+						cout << "||   UKUPNA STATISTIKA    ||" << endl;
+						cout << "============================" << endl;
+						cout << endl;
+						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], MJESECNA STATISTIKA [3], " << endl << endl<<"GODISNJA STATISTIKA [4], LISTA KUPACA [5], KRAJ [0]: ";
 						std::cin >> c1;
 						if (c1 == '5')
 						{
@@ -236,6 +296,7 @@ int main()
 							cin.get();
 							system("cls");
 						}
+						system("cls");
 					} while (c1 != '0');
 					system("cls");
 				}
@@ -246,17 +307,23 @@ int main()
 					artikli.print();
 					do
 					{
-						std::cout << "Unesite sifru artikla: ";
+						cout << endl;
+						cout << "=========================================" << endl;
+						cout << "||   STATISTIKA  ODREDJENOG ARTIKLA    ||" << endl;
+						cout << "=========================================" << endl;
+						cout << endl;
+						std::cout << "UNESITE SIFRU ARTIKLA: ";
 						std::cin >> sifra;
 						for (i = 0; i < artikli.niz.size(); i++)
 							if (artikli.niz[i].getSifra() == sifra)
 								break;
 						if (artikli.niz.size() == i)
-							std::cout << "Ne postoji sifra!" << std::endl;
+							std::cout << "NE POSTOJI SIFRA!" << std::endl;
 					} while (artikli.niz.size() == i);
 					char c1;
 					do {
-						std::cout << "Dnevna statistika [1], Sedmicna statistika [2], " << endl << "Mesecna statistika [3],Godisnja statistika [4],  Kraj [0]: ";
+
+						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], " << endl <<endl<< "MJESECNA STATISTIKA [3], GODISNJA STATISTIKA [4],  KRAJ [0]: ";
 						std::cin >> c1;
 						if (c1 == '1')
 						{
@@ -290,6 +357,7 @@ int main()
 							cin.get();
 							system("cls");
 						}
+						system("cls");
 					} while (c1 != '0');
 					system("cls");
 				}

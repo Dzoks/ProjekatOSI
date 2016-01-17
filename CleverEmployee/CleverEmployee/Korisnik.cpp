@@ -73,12 +73,12 @@ void Korisnik::prijavaNaSistem()
 			std::cout << "UNESITE VASE KORISNICKO IME:";
 			std::cin >> ime;
 			std::cout << "UNESITE VASU LOZINKU: ";
-			ch = _getch();
-			while (ch != 13) {		//character 13 is enter
-				loz.push_back(ch);
-				std::cout << '*';
-				ch = _getch();
-			}
+			HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+			DWORD mode = 0;
+			GetConsoleMode(hStdin, &mode);
+			SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
+			std::cin >> loz;
+			SetConsoleMode(hStdin, mode/* & (~ENABLE_ECHO_INPUT)*/);
 			if (ime == "gost"&&loz == "gost")
 			{
 				this->kor_ime = "Gost";
@@ -89,11 +89,11 @@ void Korisnik::prijavaNaSistem()
 			nadjeni = std::find_if(niz, niz + brojElemenata, [&ime](Korisnik& a) {return a.getIme() == ime; });
 			if (nadjeni == niz + brojElemenata) {
 				nadjeni = nullptr;
-				std::cout << "POGRESNI PODACI, MOLIMO POKUSAJTE PONOVO." << std::endl;
+				std::cout <<std::endl<< "POGRESNI PODACI, MOLIMO POKUSAJTE PONOVO." << std::endl;
 			}
 			else if (nadjeni->getLozinka() != loz) {
 				nadjeni = nullptr;
-				std::cout << "POGRESNI PODACI MOLIMO POKUSAJTE PONOVO." << std::endl;
+				std::cout << std::endl<<"POGRESNI PODACI MOLIMO POKUSAJTE PONOVO." << std::endl;
 			}
 		} while (!nadjeni);
 		this->kor_ime = nadjeni->kor_ime;

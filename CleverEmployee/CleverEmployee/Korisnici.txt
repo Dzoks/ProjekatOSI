@@ -1,9 +1,3 @@
-djordje turjacanin11 A
-nemanja maric12 A
-ratomir tesic13 A
-dejan gajic14 A
-marko markovic21 Z
-zivadin jaric22 Z
-stevan stevanovic23 Z
-rada radic24 Z
+semsa prodygy A
+baja ratomr1 Z
 END

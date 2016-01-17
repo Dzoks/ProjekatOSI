@@ -64,10 +64,10 @@ double Artikal::getCijena()
 
 std::ostream& operator<<(std::ostream &out, const Artikal& a)
 {
-	out << std::setw(7) << a.sifra<<" ";//ispisuje sifru sa 7 mjesta
+	out << std::setw(7) << std::left << a.sifra<<" ";//ispisuje sifru sa 7 mjesta
 	out << std::setw(15) << std::left << a.naziv << " ";
 	out << std::setw(15) << std::left << a.opis << " ";
-	out << std::setprecision(3);//ispisuje na 3 decimale
+	//out << std::setprecision(3);//ispisuje na 3 decimale
 	out << std::setw(10) << std::left << a.kolicina << "  ";
 	out << std::setw(8)<<std::left<<a.cijena << " ";
 	out << std::endl;

@@ -35,6 +35,11 @@ void Niz::pisiDatoteku()
 
 bool Niz::dodajArtikal()
 {
+	std::cout << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << "||     DODAVANJE NOVOG ARTIKLA     ||" << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << std::endl;
 	bool flag = true;
 	do
 	{
@@ -60,7 +65,11 @@ bool Niz::dodajArtikal()
 
 bool Niz::brisiArtikal()
 {
-	std::cout << std::endl << "~~~~~~~~~~~~~~~~~~BRISANJE   ARTIKLA~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << "||         BRISANJE ARTIKLA        ||" << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << std::endl;
 	int sifra;
 	do
 	{
@@ -92,8 +101,11 @@ bool Niz::brisiArtikal()
 
 void Niz::traziPoSifri()
 {
-	std::cout << "~~~~~~~~~~ P R E T R A G A ~~~~~~~~" << std::endl;
-	std::cout << "~~~~~~~~~~ P O   S I F R I ~~~~~~~~" << std::endl;
+	std::cout << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << "||         PRETRAGA PO SIFRI       ||" << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << std::endl;
 	int sifra;
 	do
 	{
@@ -124,8 +136,11 @@ void Niz::traziPoSifri()
 
 void Niz::traziPoNazivu()
 {
-	std::cout << "~~~~~~~~~~ P R E T R A G A ~~~~~~~~" << std::endl;
-	std::cout << "~~~~~~~~~ P O   N A Z I V U  ~~~~~~~" << std::endl;
+	std::cout << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << "||        PRETRAGA PO NAZIVU       ||" << std::endl;
+	std::cout << "=====================================" << std::endl;
+	std::cout << std::endl;
 	std::string naziv;
 	do
 	{
@@ -161,13 +176,13 @@ void Niz::print()
 
 void Niz::ispisi_heder()
 {
-	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << "~SIFRA~ ~~~~~NAZIV~~~~~ ~~~~~OPIS~~~~~~ ~KOLICINA~ ~CIJENA~" << std::endl;
-	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << "===========================================================" << std::endl;
+	std::cout << "=SIFRA= =====NAZIV===== =====OPIS====== =KOLICINA= =CIJENA=" << std::endl;
+	std::cout << "===========================================================" << std::endl;
 }
 
 void Niz::ispisi_footer()
 {
-	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	std::cout << "===========================================================" << std::endl;
 }
 
