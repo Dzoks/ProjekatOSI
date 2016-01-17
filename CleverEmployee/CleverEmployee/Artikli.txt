@@ -1,9 +1,4 @@
-12344 Jabuke nema_opis 11 6.8
-988 Meso krmece 32 21.5
-147 Marmelada nema_opis 4 2
-1 Sijalica 100W 1.5 5
-1122 Hljeb razeni 1.4 13
-2233 Jogobela visnja 3.2 7
-911 Sat polovan 19.99 2
-9899 Janjetna sveza 188 0
+678 jagode nema_opis 3 5
+789 meso svinjsko 12 20
+709 meso jagnjece 17 20
 -1

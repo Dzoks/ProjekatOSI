@@ -79,32 +79,32 @@ std::istream & operator>>(std::istream &in, Artikal &a)
 	std::cout << "UNOS ARTIKLA: " << std::endl;
 	do
 	{
-		std::cout << "\tSifra: "; in >> a.sifra;
+		std::cout << "\tSIFRA: "; in >> a.sifra;
 	} while (a.sifra < 1 || a.sifra>999999);//sifra mora imati izmedju 1 i 7 cifara
 	do
 	{
-		std::cout << "\tNaziv: "; in >> a.naziv;
+		std::cout << "\tNAZIV: "; in >> a.naziv;
 	} while (a.naziv.length() < 3);
 	char c;
 	do
 	{
-		std::cout << "\tOpis DA[D]  NE[N]: ";
+		std::cout << "\tOPIS DA[D]  NE[N]: ";
 		std::cin >> c;
 	} while (c != 'D' && c != 'N');
 	a.opis = "nema_opis";//nema opisa,uneseno N
 	if (c == 'D')
 	{
-		std::cout << "\t\tUnesite opis:";
+		std::cout << "\t\tUNESITE OPIS:";
 		in >> a.opis;
 	}
 
 	do
 	{
-		std::cout << "\tKolicina: "; in >> a.kolicina;
+		std::cout << "\tKOLICINA: "; in >> a.kolicina;
 	} while (a.kolicina < 0.01);//kolicina je manja od 0.01 jer neki proizvod moze imati kolicinu 0.5,a kolicina ipak mora biti veca od nule
 	do
 	{
-		std::cout << "\tCijena: "; in >> a.cijena;
+		std::cout << "\tCIJENA: "; in >> a.cijena;
 	} while (a.cijena < 0.01);//cijena je manja od 0.01 jer neki proizvod moze imati cijenu 0.5,a cijena ipak mora biti veca od nule
 	return in;
 }

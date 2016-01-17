@@ -103,15 +103,15 @@ void Korisnik::prijavaNaSistem()
 	}
 	else
 	{
-		std::cout << "Na sistemu ne postoji administratorski nalog." << std::endl << "Da bi mogli koristiti softver, morate napraviti korisnicki nalog. Molimo unesite podatke." << std::endl;
+		std::cout << "NA SISTEMU NE POSTOJI ADMINISTRATORSKI NALOG." << std::endl << "DA BI MOGLI KORISTITI SOFTVER, MORATE NAPRAVITI KORISNICKI NALOG."<<std::endl<<"MOLIMO UNESITE PODATKE:" << std::endl;
 		std::string ime, loz;
-		std::cout << "Unesite korisnicko ime: ";
+		std::cout << "UNESITE KORISNICKO IME: ";
 		std::cin >> ime;
 		do {
-			std::cout << "Unesite lozinku:";
+			std::cout << "UNESITE LOZINKU:";
 			std::cin >> loz;
 		} while (loz.length() < 6);
-		std::cout << "Nalog uspjesno kreiran, da nastavite pritisnite ENTER." << std::endl;
+		std::cout << "NALOG USPJESNO KREIRAN, DA BI STE NASTAVILI PRITISNITE ENTER." << std::endl;
 		dat.open("Korisnici.txt", std::fstream::out);
 		dat << ime << " " << loz << " A" << std::endl;
 		dat << "END";

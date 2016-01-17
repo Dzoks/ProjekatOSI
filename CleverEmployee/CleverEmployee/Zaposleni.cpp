@@ -76,7 +76,7 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 	for (i = 0; i < other.niz.size(); i++)
 		if (other.niz[i].getSifra() == sifra)
 			break;
-	std::cout << "STA SE MIJENJA? \nIME [1], KOLICINA [2], OPIS [3], CIJENA [4]: " ;
+	std::cout << "STA SE MIJENjA? \nIME [1], KOLICINA [2], OPIS [3], CIJENA [4]: " ;
 	std::cin >> c;
 	switch (c)
 	{
@@ -113,13 +113,13 @@ void Zaposleni::izmjenaArtikla(Niz &other)
 		double cijena;
 		do
 		{
-			std::cout << "\t\tCijena: "; std::cin >>cijena;
+			std::cout << "\t\tCIJENA: "; std::cin >>cijena;
 		} while (cijena < 0.01);
 		other.niz[i].setCijena(cijena);
 		break;
 	}
 	default:
-		std::cout << "Unijeli ste pogresnu komandu"<<std::endl;
+		std::cout << "UNIJELI STE POGRESNU KOMANDU."<<std::endl;
 	}
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
@@ -130,7 +130,7 @@ void Zaposleni::prodajArtikal(Niz& niz)
 {
 	std::cout << std::endl;
 	std::cout << "============================" << std::endl;
-	std::cout << "||   PRAVLJENJE RACUNA    ||" << std::endl;
+	std::cout << "||   PRAVLjENjE RACUNA    ||" << std::endl;
 	std::cout << "============================" << std::endl;
 	if (niz.niz.size() == 0)
 	{
@@ -160,7 +160,7 @@ void Zaposleni::prodajArtikal(Niz& niz)
 	double kolicina,suma=0;
 	niz.print();
 	std::string kupac;
-	std::cout << "Unesite ime kupca: ";
+	std::cout << "UNESITE IME KUPCA: ";
 	std::cin >> kupac;
 	int kap = 5;
 	int brojElemenata = 0;
@@ -188,17 +188,17 @@ void Zaposleni::prodajArtikal(Niz& niz)
 	{
 		do
 		{
-			std::cout << "Unesite sifru artikla: ";
+			std::cout << "UNESITE SIFRU ARTIKLA: ";
 			std::cin >> sifra;
 			for (i = 0; i < niz.niz.size(); i++)
 				if (niz.niz[i].getSifra() == sifra)
 					break;
 			if (niz.niz.size() == i)
-				std::cout << "Ne postoji sifra!" << std::endl;
+				std::cout << "NE POSTOJI SIFRA!" << std::endl;
 		} while (niz.niz.size() == i);
 		do
 		{
-			std::cout << "Unesite kolicinu koju prodajete: ";
+			std::cout << "UNESITE KOLICINU KOJU PRODAJETE: ";
 			std::cin >> kolicina;
 		} while (kolicina<0 || kolicina>niz.niz[i].getKolicina());
 		niz.niz[i].setKolicina(niz.niz[i].getKolicina() - kolicina);
@@ -290,11 +290,11 @@ void Zaposleni::statistikaDan()
 		dat.close();
 	}
 
-		std::cout << "Dnevna statistika prodaje za " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-		std::cout << "===============================================================================================" << std::endl;
-		std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-		std::cout << "Dnevni prihod: " << ukupnaCena << std::endl;
-		std::cout << "===============================================================================================" << std::endl;
+		std::cout << "DNEVNA STATISTIKA PRODAJE ZA " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+		std::cout << "========================================" << std::endl;
+		std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+		std::cout << "DNEVNI PRIHOD: " << ukupnaCena << std::endl;
+		std::cout << "========================================" << std::endl << std::endl;
 		std::cout << "=============================================" << std::endl;
 		std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 		std::cout << "=============================================" << std::endl;
@@ -329,12 +329,12 @@ void Zaposleni::statistikaSedmicaJedan(int sifra, Niz & niz, int i)
 		}
 		dat.close();
 	}
-	std::cout << "Sedmicna statistika prodaje za vrijeme: " << d << "." << m << "." << y << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "Artikal: " << niz.niz[i].getNaziv() << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Sedmicni prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "SEDMICNA STATISKA PRODAJE ZA: " << d << "." << m << "." << y << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "ARTIKAL: " << niz.niz[i].getNaziv() << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "SEDMICNI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -366,12 +366,12 @@ void Zaposleni::statistikaDanJedan(int sifra,Niz& niz,int i)
 		}
 		dat.close();
 	}
-	std::cout << "Dnevna statistika prodaje za " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "Artikal: " << niz.niz[i].getNaziv() << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Dnevni prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "DNEVNA STATISTIKA PRODAJE ZA " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "ARTIKAL: " << niz.niz[i].getNaziv() << std::endl;
+	std::cout << "==========================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "DNEVNI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "==========================================" << std::endl << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -402,12 +402,12 @@ void Zaposleni::statistikaMjesecJedan(int sifra, Niz &niz, int i)
 		}
 		dat.close();
 	}
-	std::cout << "Mesecna statistika prodaje za vrijeme: " << 1 << "." << vreme.month << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "Artikal: " << niz.niz[i].getNaziv() << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Mesecni prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "MJESECNA STATISTIKA PRODAJE ZA: " << 1 << "." << vreme.month << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "ARTIKAL: " << niz.niz[i].getNaziv() << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "MJESECNI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -438,12 +438,12 @@ void Zaposleni::statistikaGodinaJedan(int sifra, Niz &niz, int i)
 		}
 		dat.close();
 	}
-	std::cout << "Godisnja statistika prodaje za vrijeme: " << 1 << "." << 1 << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "Artikal: " << niz.niz[i].getNaziv() << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Godisnji prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "GODISNJA STATISTIKA PRODAJE ZA: " << 1 << "." << 1 << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "ARTIKAL: " << niz.niz[i].getNaziv() << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "GODISNJI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -477,11 +477,11 @@ void Zaposleni::statistikaSedmica()
 		}
 		dat.close();
 	}
-	std::cout << "Sedmicna statistika prodaje za vrijeme: "<<d<<"."<<m<<"."<<y<<". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Sedmicni prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "SEDMICNA STATISTIKA PRODAJE ZA: "<<d<<"."<<m<<"."<<y<<". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "SEDMICNI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -513,11 +513,11 @@ void Zaposleni::statistikaMjesec()
 		}
 		dat.close();
 	}
-	std::cout << "Mesecna statistika prodaje za vrijeme: " << 1 << "."<< vreme.month << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Mesecni prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "MJESECNA STATISTIKA PRODAJE ZA: " << 1 << "."<< vreme.month << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "MJESECNI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
@@ -548,11 +548,11 @@ void Zaposleni::statistikaGodina()
 		}
 		dat.close();
 	}
-	std::cout << "Godisnja statistika prodaje za vrijeme: " << 1 << "." << 1 << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
-	std::cout << "Ukupna kolicina prodanih proizvoda: " << ukupnaKolicina << std::endl;
-	std::cout << "Godisnji prihod: " << ukupnaCena << std::endl;
-	std::cout << "===============================================================================================" << std::endl;
+	std::cout << "GODISNJA STATISTIKA PRODAJE ZA: " << 1 << "." << 1 << "." << vreme.year << ". - " << vreme.day << "." << vreme.month << "." << vreme.year << "." << std::endl;
+	std::cout << "=========================================================" << std::endl;
+	std::cout << "UKUPNA KOLICINA PRODANIH PROIZVODA: " << ukupnaKolicina << std::endl;
+	std::cout << "GODISNJI PRIHOD: " << ukupnaCena << std::endl;
+	std::cout << "=========================================================" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;

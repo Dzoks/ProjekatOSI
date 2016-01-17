@@ -73,7 +73,7 @@ bool Niz::brisiArtikal()
 	int sifra;
 	do
 	{
-	std::cout << "Sifra: "; std::cin >> sifra;
+	std::cout << "SIFRA: "; std::cin >> sifra;
 	} while (sifra < 1 || sifra >999999);
 	int i;
 	Artikal a;
@@ -109,7 +109,7 @@ void Niz::traziPoSifri()
 	int sifra;
 	do
 	{
-		std::cout << "\tSifra: "; std::cin >> sifra;
+		std::cout << "\tSIFRA: "; std::cin >> sifra;
 	} while (sifra < 1 || sifra >999999);
 	Artikal a;
 	for (int i = 0; i < niz.size(); i++)
@@ -144,7 +144,7 @@ void Niz::traziPoNazivu()
 	std::string naziv;
 	do
 	{
-		std::cout << "\tNaziv: "; std::cin >> naziv;
+		std::cout << "\tNAZIV: "; std::cin >> naziv;
 	} while (naziv.length() < 3);
 	Artikal a;
 	for (int i = 0; i < niz.size();i++)

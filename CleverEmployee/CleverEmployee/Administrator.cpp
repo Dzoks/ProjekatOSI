@@ -51,7 +51,7 @@ void Administrator::kreirajNalog()
 		{
 			std::cout << "UNESITE LOZINKU: ";
 			std::cin >> loz;
-			if (loz.length() < 6) std::cout << std::endl<< "LOZINKA IMA MANJE OD 6 KARAKTERA," << std::endl << "MOLIMO POKUSAJTE PONOVO." << std::endl << std::endl;
+			if (loz.length() < 6) std::cout << std::endl<< "LOZINKA IMA MANjE OD 6 KARAKTERA," << std::endl << "MOLIMO POKUSAJTE PONOVO." << std::endl << std::endl;
 		} while (loz.length() < 6);
 		do
 		{
@@ -84,9 +84,9 @@ void Administrator::kreirajNalog()
 		iz << izmene;
 		iz.close();
 		delete[] niz;
-		std::cout << std::endl<< "===================================================================" << std::endl;
-		std::cout << "||NALOG USPJESNO DODAN, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
-		std::cout << "===================================================================" << std::endl;
+		std::cout << std::endl<< "========================================================" << std::endl;
+		std::cout << "||NALOG USPJESNO DODAN, PRITISNITE ENTER DA NASTAVITE.||" << std::endl;
+		std::cout << "========================================================" << std::endl;
 		std::cin.get();
 		std::cin.get();
 		system("cls");
@@ -302,9 +302,9 @@ void Administrator::brisiNalog()
 	});
 	dat << "END";
 	dat.close();
-	std::cout << "======================================================================" << std::endl;
-	std::cout << "||NALOG USPJESNO IZBRISAN. PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
-	std::cout << "======================================================================" << std::endl;
+	std::cout << "===========================================================" << std::endl;
+	std::cout << "||NALOG USPJESNO IZBRISAN. PRITISNITE ENTER DA NASTAVITE.||" << std::endl;
+	std::cout << "===========================================================" << std::endl;
 	int izmene = 0;
 	std::fstream iz("Izmene.txt", std::ios::in);
 	if (iz) { iz >> izmene; iz.close(); }
@@ -326,7 +326,7 @@ void Administrator::podesavanjeBoje()
 	char c;
 	std::cout << std::endl;
 	std::cout << "===================================================" << std::endl;
-	std::cout << "||              PODESAVANJE BOJE                 ||" << std::endl;
+	std::cout << "||              PODESAVANjE BOJE                 ||" << std::endl;
 	std::cout << "===================================================" << std::endl << std::endl;
 	do {
 
@@ -341,9 +341,9 @@ void Administrator::podesavanjeBoje()
 			dat << "color F0" << std::endl;
 		else if(c != '1'&& c != '2'&& c != '3') std::cout << "POGRESNA OPCIJA!" << std::endl;
 	} while (c != '1'&& c != '2'&& c!='3');
-	std::cout << "=================================================================================================="<<std::endl;
-	std::cout << "||PROMJENE CE BITI IZVRSENE NAKON PONOVNOG POKRETANJA, pritisnite bilo koji taster da nastavite.||" << std::endl;
-	std::cout << "==================================================================================================" << std::endl;
+	std::cout << "======================================================="<<std::endl;
+	std::cout << "||PROMJENE CE BITI IZVRSENE NAKON PONOVNOG POKRETANJA||" << std::endl <<"||PRITISNITE ENTER DA NASTAVITE.                     ||" << std::endl;
+	std::cout << "=======================================================" << std::endl;
 		dat.close();
 		std::cin.get();
 		std::cin.get();
@@ -355,9 +355,9 @@ void Administrator::brojIzmjena()
 	int izmene = 0;
 	std::fstream iz("Izmene.txt", std::ios::in);
 	if (iz) { iz >> izmene; iz.close(); }
-	std::cout << "================================================================================"<<std::endl;
-	std::cout << "||UKUPAN BROJ IZMJENA IZNOSI" << std::setw(7)<<izmene<<", pritisnite bilo koji taster da nastavite.||"<<std::endl;
-	std::cout << "================================================================================" << std::endl;
+	std::cout << "====================================="<<std::endl;
+	std::cout << "||UKUPAN BROJ IZMJENA IZNOSI" << std::setw(7)<<izmene <<"||"<< std::endl<<"||PRITISNITE ENTER DA NASTAVITE.   ||"<<std::endl;
+	std::cout << "=====================================" << std::endl;
 	std::cin.get();
 	std::cin.get();
 	system("cls");
@@ -390,19 +390,19 @@ void Administrator::ukupanBrojNaloga()
 		std::cin >> cha;
 		if (cha == '1')
 		{
-			std::cout << "========================================================================================" << std::endl;
-			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
-			std::cout << "========================================================================================" << std::endl;
+			std::cout << "=============================================" << std::endl;
+			std::cout << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br <<"||" << std::endl<<"||PRITISNITE ENTER DA NASTAVITE.           ||" << std::endl;
+			std::cout << "=============================================" << std::endl;
 		}
 		else if (cha == '2')
 		{
 			std::fstream out("BrojNaloga.txt", std::ios::out);
-			out << "========================================================================================" << std::endl;
-			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br << ", pritisnite bilo koji taster da nastavite.||" << std::endl;
-			out << "========================================================================================" << std::endl;
-			std::cout << "================================================================================================================" << std::endl;
-			std::cout << "||INFORMACIJA KOJU STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt, pritisnite bilo koji taster da nastavite.||" << std::endl;
-			std::cout << "================================================================================================================" << std::endl;
+			out << "======================================================================" << std::endl;
+			out << "||UKUPAN BROJ KORISNICKIH NALOGA JE: " << std::setw(6) << br <<"PRITISNITE ENTER DA NASTAVITE.||" << std::endl;
+			out << "=====================================================================" << std::endl;
+			std::cout << "=====================================================================" << std::endl;
+			std::cout << "||INFORMACIJA KOJU STE TRAZILI JE UPISANA U DATOTEKU BrojNaloga.txt||"<<std::endl<<"||PRITISNITE ENTER DA NASTAVITE.                                   ||" << std::endl;
+			std::cout << "=====================================================================" << std::endl;
 			out.close();
 		}
 		std::cin.get();

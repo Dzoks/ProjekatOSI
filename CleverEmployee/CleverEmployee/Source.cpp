@@ -47,7 +47,7 @@ int main()
 			cout << "========================================" << endl;
 			cout << endl;
 			std::cout << "DOBRODOSLI, " << admin.getIme() << "! ODABERITE NEKU OD POSTOJECIH OPCIJA: " << std::endl << endl;
-			std::cout << "RAD SA KORISNICKIM NALOZIMA [1], STATISTIKA SISTEMA [2], OSTALE OPCIJE [3], Kraj [0] : ";
+			std::cout << "RAD SA KORISNICKIM NALOZIMA [1], STATISTIKA SISTEMA [2]"<< std::endl << std::endl<<"OSTALE OPCIJE [3], Kraj [0] : ";
 			cin >> c;
 			if (c == '1')
 			{
@@ -241,7 +241,7 @@ int main()
 					cout << "||   STATISTIKA    ||" << endl;
 					cout << "=====================" << endl;
 					cout << endl;
-					cout << "UKUPNA STATISTIKA [1], ZA ODREDJENI ARTIKAL [2]: ";
+					cout << "UKUPNA STATISTIKA [1], ZA ODREDjENI ARTIKAL [2]: ";
 					std::cin >> c2;
 				} while (c2 != '1' && c2 != '2');
 				if (c2 == '1')
@@ -254,7 +254,7 @@ int main()
 						cout << "||   UKUPNA STATISTIKA    ||" << endl;
 						cout << "============================" << endl;
 						cout << endl;
-						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], MJESECNA STATISTIKA [3], " << endl << endl<<"GODISNJA STATISTIKA [4], LISTA KUPACA [5], KRAJ [0]: ";
+						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], MJESECNA STATISTIKA [3], " << endl << endl<<"GODISNjA STATISTIKA [4], LISTA KUPACA [5], KRAJ [0]: ";
 						std::cin >> c1;
 						if (c1 == '5')
 						{
@@ -309,7 +309,7 @@ int main()
 					{
 						cout << endl;
 						cout << "=========================================" << endl;
-						cout << "||   STATISTIKA  ODREDJENOG ARTIKLA    ||" << endl;
+						cout << "||   STATISTIKA  ODREDjENOG ARTIKLA    ||" << endl;
 						cout << "=========================================" << endl;
 						cout << endl;
 						std::cout << "UNESITE SIFRU ARTIKLA: ";
@@ -323,7 +323,7 @@ int main()
 					char c1;
 					do {
 
-						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], " << endl <<endl<< "MJESECNA STATISTIKA [3], GODISNJA STATISTIKA [4],  KRAJ [0]: ";
+						std::cout << "DNEVNA STATISTIKA [1], SEDMICNA STATISTIKA [2], " << endl <<endl<< "MJESECNA STATISTIKA [3], GODISNjA STATISTIKA [4],  KRAJ [0]: ";
 						std::cin >> c1;
 						if (c1 == '1')
 						{
