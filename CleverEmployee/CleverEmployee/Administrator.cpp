@@ -186,9 +186,9 @@ void Administrator::izmjenaNaloga()
 	iz << izmene;
 	iz.close();
 	delete[] niz;
-	std::cout << "=======================================================================" << std::endl;
-	std::cout << "||NALOG USPJESNO IZMJENJEN, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
-	std::cout << "=======================================================================" << std::endl;
+	std::cout << "========================================================================" << std::endl;
+	std::cout << "||      NALOG USPJESNO IZMJENJEN, PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
+	std::cout << "========================================================================" << std::endl;
 	std::cin.get();
 	std::cin.get();
 	system("cls");
@@ -236,7 +236,7 @@ void Administrator::pisiSve()
 	delete[] niz;
 	std::cout << std::endl;
 	std::cout << "=============================================" << std::endl;
-	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	std::cin.get();
 	std::cin.get();
@@ -427,9 +427,9 @@ void Administrator::dodajObavjestenje()
 	std::fstream por("Poruka.txt", std::fstream::out);
 	por << poruka;
 	por.close();
-	std::cout << "===========================================================================" << std::endl;
-	std::cout << "||OBAVJESTENJE USPJESNO DODANO, PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
-	std::cout << "===========================================================================" << std::endl;
+	std::cout << "============================================================================" << std::endl;
+	std::cout << "||      OBAVJESTENJE USPJESNO DODANO, PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
+	std::cout << "============================================================================" << std::endl;
 	std::cin.get();
 	//std::cin.get();
 	system("cls");

@@ -58,7 +58,7 @@ bool Niz::dodajArtikal()
 			std::cout << "UNESENA SIFRA VEC POSTOJI , PROBAJTE PONOVO!" << std::endl;
 	} while (flag);
 	std::cout << "=============================================" << std::endl;
-	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	return !flag;
 }
@@ -94,7 +94,7 @@ bool Niz::brisiArtikal()
 	else 
 		std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 	std::cout << "=============================================" << std::endl;
-	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
 	return true;
 }
@@ -130,7 +130,7 @@ void Niz::traziPoSifri()
 		std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 	}
 	std::cout << "=============================================" << std::endl;
-	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
 }
 
@@ -162,7 +162,7 @@ void Niz::traziPoNazivu()
 	}
 	else std::cout << "NIJE PRONADJEN TRAZENI ARTIKAL!" << std::endl;
 	std::cout << "=============================================" << std::endl;
-	std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+	std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 	std::cout << "=============================================" << std::endl;
 }
 

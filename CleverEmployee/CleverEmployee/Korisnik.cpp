@@ -111,7 +111,7 @@ void Korisnik::prijavaNaSistem()
 			std::cout << "Unesite lozinku:";
 			std::cin >> loz;
 		} while (loz.length() < 6);
-		std::cout << "Nalog uspjesno kreiran, da nastavite pritisnite bilo koji taster." << std::endl;
+		std::cout << "Nalog uspjesno kreiran, da nastavite pritisnite ENTER." << std::endl;
 		dat.open("Korisnici.txt", std::fstream::out);
 		dat << ime << " " << loz << " A" << std::endl;
 		dat << "END";

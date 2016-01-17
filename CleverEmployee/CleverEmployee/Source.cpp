@@ -216,7 +216,7 @@ int main()
 				system("cls");
 				artikli.print();
 				std::cout << "=============================================" << std::endl;
-				std::cout << "||PRITISNITE BILO KOJI TASTER DA NASTAVITE.||" << std::endl;
+				std::cout << "||     PRITISNITE ENTER DA NASTAVITE.      ||" << std::endl;
 				std::cout << "=============================================" << std::endl;
 				cin.get();
 				cin.get();
